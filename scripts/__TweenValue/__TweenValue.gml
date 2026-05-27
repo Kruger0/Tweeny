@@ -44,6 +44,10 @@ function __TweenValue() : __TweenStep() constructor {
         __interpolate = method(self, func);
         return self;
     }
+    static Relative = function() {
+        // to = from + target
+        return self;
+    }
     static From = function(value) {
         __from = value;
         return self;

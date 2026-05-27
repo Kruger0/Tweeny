@@ -7,6 +7,7 @@ function Tween(source = undefined) constructor {
     __steps = [];
     __current = 0;
     __speed = 1.0;
+    __ease = undefined;
     __loopsTotal = 1;
     __loopsLeft = __loopsTotal;
     __paused = false;
@@ -163,8 +164,13 @@ function Tween(source = undefined) constructor {
         _step.__duration = duration;
         return __Push(_step);
     }
-    static Method = function(instance, func, from, to) {
-        
+    static Method = function(func, from, to, duration) {
+        var _step = new __TweenMethod();
+        _step.__func = func;
+        _step.__from = from;
+        _step.__target = to;
+        _step.__duration = duration;
+        return __Push(_step);
     }
     static Interval = function(duration) {
         var _step = new __TweenInterval();
@@ -177,26 +183,22 @@ function Tween(source = undefined) constructor {
         _step.__args = args;
         return __Push(_step);
     }
-    static Method = function(func, from, to, duration) {
-        var _step = new __TweenMethod();
-        _step.__func = func;
-        _step.__from = from;
-        _step.__target = to;
-        _step.__duration = duration;
-        return __Push(_step);
-    }
     
-    static SetParallel = function(enabled) {
-        __parallel = enabled;
+    static SetParallel = function(parallel) {
+        __parallel = parallel;
         return self;
     }
     static SetSpeed = function(scale) {
         __speed = scale;
         return self;
     }
-    static SetLoops = function(count) {
-        __loopsTotal = count;
+    static SetLoops = function(loops = 0) {
+        __loopsTotal = loops;
         __loopsLeft = __loopsTotal;
+        return self;
+    }
+    static SetEase = function(animCurve, animChannel = 0) {
+        __ease = animcurve_get_channel(animCurve, animChannel);
         return self;
     }
     
@@ -210,11 +212,22 @@ function Tween(source = undefined) constructor {
         
     }
     
+    static IsRunning = function() {
+        
+    }
+    static IsPaused = function() {
+        return __paused;
+    }
+    
+    static Parallel = function() {
+        __parallel = true;
+        return self;
+    }
     static Pause = function() {
         __paused = true;
         return self;
     }
-    static Resume = function() {
+    static Play = function() {
         __paused = false;
         return self;
     }
