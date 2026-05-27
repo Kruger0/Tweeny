@@ -9,6 +9,7 @@ function __TweenStep() constructor {
     __elapsed = 0;
     __duration = 0;
     __instance = undefined;
+    __func = undefined;
 }
 
 /// @ignore
@@ -19,7 +20,6 @@ function __TweenInterval() : __TweenStep() constructor {
 /// @ignore
 function __TweenCallback() : __TweenStep() constructor {
     __type = __TWEEN_TYPE.CALLBACK;
-    __func = undefined;
     __args = undefined;
 }
 
@@ -40,8 +40,15 @@ function __TweenValue() : __TweenStep() constructor {
         __delay = value;
         return self;
     }
+    static SetInterpolate = function(func) {
+        __interpolate = method(self, func);
+        return self;
+    }
     static From = function(value) {
         __from = value;
+        return self;
+    }
+    static FromCurrent = function() {
         return self;
     }
 }
@@ -62,4 +69,10 @@ function __TweenColor() : __TweenValue() constructor {
 function __TweenAngle() : __TweenValue() constructor {
     __type = __TWEEN_TYPE.ANGLE;
     __interpolate = __TweenLerpAngle;
+}
+
+/// @ignore
+function __TweenMethod() : __TweenValue() constructor {
+    __type = __TWEEN_TYPE.METHOD;
+    __interpolate = __TweenLerpValue;
 }

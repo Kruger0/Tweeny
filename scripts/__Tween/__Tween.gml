@@ -1,85 +1,18 @@
 
 function Tween(source = undefined) constructor {
-    static data = __TweenInit();
     
+    #region Private
+    static __data = __TweenInit();
     __source = source;
     __steps = [];
     __current = 0;
     __speed = 1.0;
     __loopsTotal = 1;
-    __loopsRemaining = 1;
+    __loopsLeft = __loopsTotal;
     __paused = false;
     __parallel = false;
     __dead = false;
-    
-    array_push(data.tweens, self);
-    
-    static Variable = function(instance, variable, target, duration) {
-        var _step = new __TweenVariable();
-        _step.__instance = instance;
-        _step.__variable = variable;
-        _step.__target = target;
-        _step.__duration = duration;
-        return __Push(_step);
-    }
-    static Color = function(instance, variable, target, duration) {
-        var _step = new __TweenColor();
-        _step.__instance = instance;
-        _step.__variable = variable;
-        _step.__target = target;
-        _step.__duration = duration;
-        return __Push(_step);
-    }
-    static Angle = function(instance, variable, target, duration) {
-        var _step = new __TweenAngle();
-        _step.__instance = instance;
-        _step.__variable = variable;
-        _step.__target = target;
-        _step.__duration = duration;
-        return __Push(_step);
-    }
-    static Method = function(instance, func, from, to) {
-        
-    }
-    static Interval = function(duration) {
-        var _step = new __TweenInterval();
-        _step.__duration = duration;
-        return __Push(_step);
-    }
-    static Callback = function(instance, func, args) {
-        var _step = new __TweenCallback();
-        _step.__instance = instance;
-        _step.__func = func;
-        _step.__args = args;
-        return __Push(_step);
-    }
-    
-    static SetParallel = function(enabled) {
-        __parallel = enabled;
-        return self;
-    }
-    static SetSpeed = function(scale) {
-        __speed = scale;
-        return self;
-    }
-    static SetLoops = function(count) {
-        __loopsTotal = count;
-        __loopsRemaining = __loopsTotal;
-        return self;
-    }
-    
-    static Pause = function() {
-        __paused = true;
-        return self;
-    }
-    static Resume = function() {
-        __paused = false;
-        return self;
-    }
-    static Destroy = function() {
-        __paused = true;
-        __dead = true;
-    }
+    array_push(__data.tweens, self);
     
     static __Push = function(step) {
         if (__parallel && array_length(__steps) > 0) {
@@ -125,8 +58,8 @@ function Tween(source = undefined) constructor {
         }
     }
     static __Execute = function(step) {
-        static data = __TweenInit();
-        var _dt = (data.dt / game_get_speed(gamespeed_fps)) * __speed;
+        static __data = __TweenInit();
+        var _dt = (__data.dt / game_get_speed(gamespeed_fps)) * __speed;
         if (step.__remaining > 0) {
             step.__remaining -= _dt;
             return;
@@ -152,10 +85,20 @@ function Tween(source = undefined) constructor {
                 } break;
             
                 case __TWEEN_TYPE.CALLBACK: {
-                    if (__instance == noone || instance_exists(__instance)) {
-                        __func();
-                    }
+                    script_execute_ext(__func, __args);
                     __done = true;
+                } break;
+                
+                case __TWEEN_TYPE.METHOD: {
+                    __from ??= 0;
+                    __elapsed += _dt;
+                    var _t = clamp(__elapsed / __duration, 0, 1);
+                    if (__ease != undefined) {
+                        _t = animcurve_channel_evaluate(__ease, _t);
+                    }
+                    var _val = __interpolate(__from, __target, _t);
+                    __func(_val);
+                    if (__elapsed >= __duration) __done = true;
                 } break;
             }
         }
@@ -166,8 +109,8 @@ function Tween(source = undefined) constructor {
             if (__loopsTotal == -1) {
                 __Reset();
             } else {
-                __loopsRemaining--;
-                if (__loopsRemaining <= 0) {
+                __loopsLeft--;
+                if (__loopsLeft <= 0) {
                     __dead = true;
                 } else {
                     __Reset();
@@ -192,5 +135,103 @@ function Tween(source = undefined) constructor {
                 _slot.__remaining = _slot.__delay;
             }
         }
+    }
+    #endregion
+    
+    /// @arg instance The instance or struct scope
+    static Variable = function(instance, variable, target, duration) {
+        var _step = new __TweenVariable();
+        _step.__instance = instance;
+        _step.__variable = variable;
+        _step.__target = target;
+        _step.__duration = duration;
+        return __Push(_step);
+    }
+    static Color = function(instance, variable, target, duration) {
+        var _step = new __TweenColor();
+        _step.__instance = instance;
+        _step.__variable = variable;
+        _step.__target = target;
+        _step.__duration = duration;
+        return __Push(_step);
+    }
+    static Angle = function(instance, variable, target, duration) {
+        var _step = new __TweenAngle();
+        _step.__instance = instance;
+        _step.__variable = variable;
+        _step.__target = target;
+        _step.__duration = duration;
+        return __Push(_step);
+    }
+    static Method = function(instance, func, from, to) {
+        
+    }
+    static Interval = function(duration) {
+        var _step = new __TweenInterval();
+        _step.__duration = duration;
+        return __Push(_step);
+    }
+    static Callback = function(func, args = []) {
+        var _step = new __TweenCallback();
+        _step.__func = func;
+        _step.__args = args;
+        return __Push(_step);
+    }
+    static Method = function(func, from, to, duration) {
+        var _step = new __TweenMethod();
+        _step.__func = func;
+        _step.__from = from;
+        _step.__target = to;
+        _step.__duration = duration;
+        return __Push(_step);
+    }
+    
+    static SetParallel = function(enabled) {
+        __parallel = enabled;
+        return self;
+    }
+    static SetSpeed = function(scale) {
+        __speed = scale;
+        return self;
+    }
+    static SetLoops = function(count) {
+        __loopsTotal = count;
+        __loopsLeft = __loopsTotal;
+        return self;
+    }
+    
+    static GetLoops = function() {
+        return __loopsTotal;
+    }
+    static GetLoopsLeft = function() {
+        return __loopsLeft;
+    }
+    static GetElapsedTime = function() {
+        
+    }
+    
+    static Pause = function() {
+        __paused = true;
+        return self;
+    }
+    static Resume = function() {
+        __paused = false;
+        return self;
+    }
+    static Stop = function() {
+        
+    }
+    static Finished = function() {
+        
+    }
+    static LoopFinished = function() {
+        
+    }
+    static StepFinished = function() {
+        
+    }
+    static Destroy = function() {
+        __paused = true;
+        __dead = true;
     }
 }
