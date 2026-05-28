@@ -1,3 +1,5 @@
+
+/// @ignore
 function __TweenInit() {
     static __data = {
         dt: 1,
