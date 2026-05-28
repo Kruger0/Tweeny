@@ -200,11 +200,10 @@ function Tween(source = undefined) constructor {
     static SetEase = function(animCurve, animChannel = 0) {
         var _curve = animCurve;
         if (is_numeric(animCurve)) {
-            switch (animCurve) {
-                
-            }
+            __ease = animcurve_get_channel(__TweenEaseCurves, animCurve);
+        } else {
+            __ease = animcurve_get_channel(_curve, animChannel);
         }
-        __ease = animcurve_get_channel(_curve, animChannel);
         return self;
     }
     
