@@ -15,9 +15,8 @@
         {"th0":-0.75,"th1":0.125,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
     {"$GMAnimCurveChannel":"","%Name":"OutIn","colour":4283417946,"name":"OutIn","points":[
-        {"th0":-0.125,"th1":0.0803704,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
-        {"th0":-0.44093534,"th1":0.43576956,"tv0":0.8960134,"tv1":-0.88551617,"x":0.5,"y":0.5,},
-        {"th0":-0.0803704,"th1":0.125,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":0.0,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
