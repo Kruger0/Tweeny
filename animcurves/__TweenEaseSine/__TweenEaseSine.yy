@@ -3,20 +3,21 @@
   "%Name":"__TweenEaseSine",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"In","colour":4294561024,"name":"In","points":[
-        {"th0":-0.1,"th1":0.5,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
-        {"th0":-2.0954758E-09,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.1,"th1":0.40981966,"tv0":0.0,"tv1":0.005665722,"x":0.0,"y":0.0,},
+        {"th0":-0.23647296,"th1":0.1,"tv0":-0.36543912,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
     {"$GMAnimCurveChannel":"","%Name":"Out","colour":4279542527,"name":"Out","points":[
-        {"th0":-0.1,"th1":2.0954758E-09,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
-        {"th0":-0.5,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.1,"th1":0.19839679,"tv0":0.0,"tv1":0.305949,"x":0.0,"y":0.0,},
+        {"th0":-0.4118237,"th1":0.1,"tv0":0.00566566,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
     {"$GMAnimCurveChannel":"","%Name":"InOut","colour":4294787035,"name":"InOut","points":[
-        {"th0":-0.05,"th1":0.4,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
-        {"th0":-0.4,"th1":0.05,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.05,"th1":0.3719439,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.37394786,"th1":0.05,"tv0":-0.0028328896,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
     {"$GMAnimCurveChannel":"","%Name":"OutIn","colour":4283417946,"name":"OutIn","points":[
-        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
-        {"th0":0.0,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.05,"th1":1.1641532E-09,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.24198395,"th1":0.23196393,"tv0":-0.0,"tv1":0.0,"x":0.5,"y":0.5,},
+        {"th0":-1.0477379E-09,"th1":0.05,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
