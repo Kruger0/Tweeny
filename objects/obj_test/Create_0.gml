@@ -20,43 +20,47 @@ points = {
     a : 1,
     ang : 0,
     t : new Tween(),
-    text : "Hello",
+    text : "",
     draw : function() {
         draw_set_valign(1);
         draw_set_halign(1);
         draw_set_font(fnt_test)
         gpu_set_texfilter(true)
-        draw_text_transformed_colour(x, y, floor(value), xscl, yscl, ang, c, c, c, c, a);
-        draw_text_transformed_colour(x, y+32, text, 0.3, 0.3, 0, c, c, c, c, a);
+        //draw_text_transformed_colour(x, y, floor(value), xscl, yscl, ang, c, c, c, c, a);
+        draw_text_transformed_colour(x, y+32, text, 0.4, 0.4, 0, c, c, c, c, a);
         gpu_set_texfilter(false)
         draw_set_font(-1)
         draw_set_valign(0);
         draw_set_halign(0);
     },
-    func : function() {
-        show_debug_message("Hello!")
-    },
-    test : function(v) {
-        show_debug_message(text)
-    },
+    
     increase : function() {
         if (t) t.Destroy();
         t = new Tween(); 
         t.OnFinished(function() {
             show_debug_message("TERMINOU")
         })
-        t.ParallelBegin();
-            t.Variable(self, "value", 1000, 3).Relative().SetEase(TWEEN_EASE_EXPO, TWEEN_CHANNEL_IN_OUT);
-            t.Variable(self, "xscl", 0.8, 2).SetEase(TWEEN_EASE_QUART, TWEEN_CHANNEL_OUT);
-            t.Variable(self, "yscl", 0.8, 2).SetEase(TWEEN_EASE_QUART, TWEEN_CHANNEL_OUT);
-        t.ParallelEnd();
-        t.ParallelBegin();
-            t.Angle(self, "ang", 0, 2).From(10).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
-            t.Variable(self, "xscl", 1, 2).From(1.5).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
-            t.Variable(self, "yscl", 1, 2).From(1.5).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
-            t.Color(self, "c", c_white, 2).From(c_yellow).SetEase(TWEEN_EASE_EXPO, TWEEN_CHANNEL_OUT);
-        t.ParallelEnd();
-        t.String(self, "text", "The quick brown fox jumps over the lazy dog", 2).SetEase(TWEEN_EASE_EXPO, TWEEN_CHANNEL_OUT);
+        //t.ParallelBegin();
+        //    t.Variable(self, "value", 1000, 3).Relative().SetEase(TWEEN_EASE_EXPO, TWEEN_CHANNEL_IN_OUT);
+        //    t.Variable(self, "xscl", 0.8, 2).SetEase(TWEEN_EASE_QUART, TWEEN_CHANNEL_OUT);
+        //    t.Variable(self, "yscl", 0.8, 2).SetEase(TWEEN_EASE_QUART, TWEEN_CHANNEL_OUT);
+        //t.ParallelEnd();
+        //t.ParallelBegin();
+        //    t.Angle(self, "ang", 0, 2).From(10).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        //    t.Variable(self, "xscl", 1, 2).From(1.5).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        //    t.Variable(self, "yscl", 1, 2).From(1.5).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        //    t.Color(self, "c", c_white, 2).From(c_yellow).SetEase(TWEEN_EASE_EXPO, TWEEN_CHANNEL_OUT);
+        //t.ParallelEnd();
+        t.SetEase(TWEEN_EASE_QUAD, TWEEN_CHANNEL_IN_OUT);
+        t.String(self, "text", "Olá Mundo!", 3)
+        t.Interval(1)
+        t.String(self, "text", "Testando uma função de String Lerp!", 3);
+        t.Interval(1)
+        t.String(self, "text", "Pareçe estranho...", 3);
+        t.Interval(1)
+        t.String(self, "text", "Mas garanto que vai ser divertido! :D", 3);
+        t.Interval(1)
+        t.String(self, "text", "", 3);
     }
 }
 

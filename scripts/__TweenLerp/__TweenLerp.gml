@@ -20,32 +20,37 @@ function __TweenLerpAngle(val1, val2, amount) {
 
 /// @ignore
 function __TweenLerpString(val1, val2, amount) {
-    static __space = " ";
-    static __rangeMin = 33;
-    static __rangeMax = 126;
-    var _val1 = string(val1); 
+    static __backspace = false;
+    if (amount <= 0) return val1;
+    if (amount >= 1) return val2;
+    var _val1 = string(val1);
     var _val2 = string(val2);
-    var _len1 = string_length(_val1);
-    var _len2 = string_length(_val2);
-    var _targLen = round(_len1 + (_len2 - _len1) * amount);
-    var _maxLen = max(_len1, _len2);
-    var _s1 = _val1;
-    var _s2 = _val2;
-    if (_len1 < _maxLen) _s1 += string_repeat(__space, _maxLen - _len1);
-    if (_len2 < _maxLen) _s2 += string_repeat(__space, _maxLen - _len2);
-    var _result = "";
-    for (var i = 1; i <= _maxLen; i++) {
-        var _chr1 = string_char_at(_s1, i);
-        var _chr2 = string_char_at(_s2, i);
-        var _ord1 = ord(_chr1);
-        var _ord2 = ord(_chr2);
-        var _ordRnd;
-        if (amount > 0 && amount < 1 && (_chr1 == __space || _chr2 == __space)) {
-            _ordRnd= irandom_range(__rangeMin, __rangeMax);
+    var _oldLen = string_length(_val1);
+    var _newLen = string_length(_val2);
+    
+    if (__backspace) {
+        // Backspace
+        if (amount <= 0.5) {
+            var _pos = 1.0 - (amount * 2.0);
+            var _currLen = round(_oldLen * _pos);
+            return string_copy(_val1, 1, _currLen);
         } else {
-            _ordRnd= round(_ord1 + (_ord2 - _ord1) * amount);
+            var _pos = (amount - 0.5) * 2.0;
+            var _currLen = round(_newLen * _pos);
+            return string_copy(_val2, 1, _currLen);
         }
-        _result += chr(_ordRnd);
+    } else {
+        // Scramble
+        var _currLen = round(lerp(_oldLen, _newLen, amount));
+        if (_currLen == 0) return "";
+        var _result = "";
+        for (var i = 1; i <= _currLen; i++) {
+            var _oldChr = (i <= _oldLen) ? string_ord_at(_val1, i) : 33;
+            var _newChr   = (i <= _newLen) ? string_ord_at(_val2, i) : 33;
+            var _ascii = round(lerp(_oldChr, _newChr, amount));
+            _ascii = clamp(_ascii, 32, 126);
+            _result += chr(_ascii);
+        }
+        return _result;
     }
-    return string_copy(_result, 1, _targLen);
 }
