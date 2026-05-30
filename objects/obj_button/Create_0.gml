@@ -1,3 +1,10 @@
 tween = undefined;
 hovered = false;
-yOff = 4
+yOff = 0;
+xOff = 0;
+xScl = 1;
+yScl = 1;
+ang = 0;
+tween = new Tween(id); 
+btnColor = #00CDF9;
+lblColor = #101010;

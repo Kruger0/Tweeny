@@ -36,3 +36,5 @@ function __TweenInit() {
     }
     return __data;
 }
+
+__TweenInit();

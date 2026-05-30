@@ -1,0 +1,12 @@
+
+var _time = 0.6;
+var _scl = 0.1;
+tween = new Tween(id).SetLoops().SetEase(TWEEN_EASE_SINE, TWEEN_CHANNEL_IN_OUT);
+tween.ParallelBegin();
+    tween.Variable(id, "image_xscale", -_scl, _time).Relative();
+    tween.Variable(id, "image_yscale",  _scl, _time).Relative();
+tween.ParallelEnd();
+tween.ParallelBegin();
+    tween.Variable(id, "image_xscale",  _scl, _time).Relative();
+    tween.Variable(id, "image_yscale", -_scl, _time).Relative();
+tween.ParallelEnd();
