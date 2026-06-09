@@ -3,7 +3,7 @@
 [![GameMaker](https://img.shields.io/badge/GameMaker-LTS2026-blue?logo=gamemaker)](https://gamemaker.io/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/GM-Tween)](https://github.com/Kruger0/GM-Tween/commits)
 <div align="center">
-  <h1>GM-Tween 1.0.0</h1>
+  <h1>GM-Tween 0.5.2</h1>
 </div>
 GM-Tween is a tweening engine made for GameMaker, featuring a fluent chainable API, 12 easing curves, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
