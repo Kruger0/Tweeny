@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"GM-Tween",
+  "%Name":"Tweeny",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -26,7 +26,7 @@
   "MetaData":{
     "IDEVersion":"2026.0.0.16",
   },
-  "name":"GM-Tween",
+  "name":"Tweeny",
   "resources":[
     {"id":{"name":"__TweenyEaseBack","path":"animcurves/__TweenyEaseBack/__TweenyEaseBack.yy",},},
     {"id":{"name":"__TweenyEaseBounce","path":"animcurves/__TweenyEaseBounce/__TweenyEaseBounce.yy",},},
