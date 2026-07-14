@@ -10,7 +10,7 @@ if (point_in_rectangle(mouse_x, mouse_y, _x1, _y1, _x2, _y2)) {
     if (!hovered) {
         hovered = true;
         if (tween) tween.Destroy();
-        tween = new Tween(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        tween = new Tweeny(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
         tween.ParallelBegin();
         tween.Angle(id, "ang", 0, _time).From(10);
         tween.Variable(id, "yOff", -_yOff, _time).From(0);
@@ -21,7 +21,7 @@ if (point_in_rectangle(mouse_x, mouse_y, _x1, _y1, _x2, _y2)) {
     if (hovered) {
         hovered = false;
         if (tween) tween.Destroy();
-        tween = new Tween(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        tween = new Tweeny(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
         tween.ParallelBegin();
         tween.Variable(id, "xScl", 1, _time);
         tween.Variable(id, "yScl", 1, _time);
@@ -35,7 +35,7 @@ if (point_in_rectangle(mouse_x, mouse_y, _x1, _y1, _x2, _y2)) {
 if (hovered) {
     if (mouse_check_button_pressed(mb_left)) {
         if (tween) tween.Destroy();
-        tween = new Tween(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+        tween = new Tweeny(id).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
         tween.ParallelBegin();
         tween.Variable(id, "xScl", 1, _time).From(1.2);
         tween.Variable(id, "yScl", 1, _time).From(0.9);

@@ -5,6 +5,6 @@ xOff = 0;
 xScl = 1;
 yScl = 1;
 ang = 0;
-tween = new Tween(id); 
+tween = new Tweeny(id); 
 btnColor = #00CDF9;
 lblColor = #101010;

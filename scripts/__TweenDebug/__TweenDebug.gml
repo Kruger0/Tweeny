@@ -1,7 +1,7 @@
 // feather ignore all
 /// @ignore
-function __TweenDebug() {
-    static __data = __TweenInit();
+function __TweenyDebug() {
+    static __data = __TweenyInit();
     if (os_browser != browser_not_a_browser) return 0;
     
     var _isDbgOpen  = is_debug_overlay_open();
@@ -10,7 +10,7 @@ function __TweenDebug() {
     var _btnWidth   = _viewWidth-24;
     
     if (!dbg_view_exists(__data.dbgView)) {
-        __data.dbgView = dbg_view($"GM-Tween v{__TWEEN_VERSION}", false, 256, 32, _viewWidth, _viewHeight);
+        __data.dbgView = dbg_view($"GM-Tweeny v{__TWEEN_VERSION}", false, 256, 32, _viewWidth, _viewHeight);
     }
     
     dbg_section_delete(__data.dbgSections[$ "general"]);

@@ -1,6 +1,6 @@
 // feather ignore all
 /// @ignore
-function __TweenValue() : __TweenStep() constructor {
+function __TweenyValue() : __TweenyStep() constructor {
     __type = __TWEEN_TYPE.VALUE;
     
     static SetEase = function(animCurve, animChannel = 0) {
@@ -31,31 +31,31 @@ function __TweenValue() : __TweenStep() constructor {
 }
 
 /// @ignore
-function __TweenVariable() : __TweenValue() constructor {
+function __TweenyVariable() : __TweenyValue() constructor {
     __type = __TWEEN_TYPE.VARIABLE;
-    __lerp = __TweenLerpValue;
+    __lerp = __TweenyLerpValue;
 }
 
 /// @ignore
-function __TweenColor() : __TweenValue() constructor {
+function __TweenyColor() : __TweenyValue() constructor {
     __type = __TWEEN_TYPE.COLOR;
-    __lerp = __TweenLerpColor;
+    __lerp = __TweenyLerpColor;
 }
 
 /// @ignore
-function __TweenAngle() : __TweenValue() constructor {
+function __TweenyAngle() : __TweenyValue() constructor {
     __type = __TWEEN_TYPE.ANGLE;
-    __lerp = __TweenLerpAngle;
+    __lerp = __TweenyLerpAngle;
 }
 
 /// @ignore
-function __TweenString() : __TweenValue() constructor {
+function __TweenyString() : __TweenyValue() constructor {
     __type = __TWEEN_TYPE.STRING;
-    __lerp = __TweenLerpString;
+    __lerp = __TweenyLerpString;
 }
 
 /// @ignore
-function __TweenMethod() : __TweenValue() constructor {
+function __TweenyMethod() : __TweenyValue() constructor {
     __type = __TWEEN_TYPE.METHOD;
-    __lerp = __TweenLerpValue;
+    __lerp = __TweenyLerpValue;
 }

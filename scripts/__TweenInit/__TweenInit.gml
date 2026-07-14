@@ -1,6 +1,6 @@
 // feather ignore all
 /// @ignore
-function __TweenInit() {
+function __TweenyInit() {
     static __data = undefined;
     if (is_undefined(__data)) {
         __data = {
@@ -13,14 +13,14 @@ function __TweenInit() {
             dbgMode: false,
         }
         if (GM_build_type == "run" && debug_mode) {
-            global.__Tween = __data;
+            global.__Tweeny = __data;
         }
-        __TweenDebug();
+        __TweenyDebug();
     }
     with (__data) {
         if (!time_source_exists(timeSource)) {
             timeSource = time_source_create(time_source_game, 1, time_source_units_frames, function() {
-                var _data = __TweenInit();
+                var _data = __TweenyInit();
                 var _tweens = _data.tweens;
                 for (var i = array_length(_tweens)-1; i >= 0; i--) {
                     var _tween = _tweens[i];
@@ -37,4 +37,4 @@ function __TweenInit() {
     return __data;
 }
 
-__TweenInit();
+__TweenyInit();

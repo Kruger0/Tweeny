@@ -1,12 +1,12 @@
 // feather ignore all
 /// @ignore
-function __TweenLerpValue(val1, val2, amount) {
+function __TweenyLerpValue(val1, val2, amount) {
     //return val1 + (val2 - val1) * amount;
     return lerp(val1, val2, amount);
 }
 
 /// @ignore
-function __TweenLerpColor(val1, val2, amount) {
+function __TweenyLerpColor(val1, val2, amount) {
     var _r = lerp(colour_get_red(val1), colour_get_red(val2), amount);
     var _g = lerp(colour_get_green(val1), colour_get_green(val2), amount);
     var _b = lerp(colour_get_blue(val1), colour_get_blue(val2), amount);
@@ -14,12 +14,12 @@ function __TweenLerpColor(val1, val2, amount) {
 }
 
 /// @ignore
-function __TweenLerpAngle(val1, val2, amount) {
+function __TweenyLerpAngle(val1, val2, amount) {
     return val1 + angle_difference(val2, val1) * amount;
 }
 
 /// @ignore
-function __TweenLerpString(val1, val2, amount) {
+function __TweenyLerpString(val1, val2, amount) {
     if (amount <= 0) return val1;
     if (amount >= 1) return val2;
     var _val1 = string(val1);

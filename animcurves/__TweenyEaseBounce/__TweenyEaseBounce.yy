@@ -1,6 +1,6 @@
 {
   "$GMAnimCurve":"",
-  "%Name":"__TweenEaseBounce",
+  "%Name":"__TweenyEaseBounce",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"In","colour":4294561024,"name":"In","points":[
         {"th0":-0.25,"th1":0.024268866,"tv0":0.0,"tv1":0.026954234,"x":0.0,"y":0.0,},
@@ -40,7 +40,7 @@
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
-  "name":"__TweenEaseBounce",
+  "name":"__TweenyEaseBounce",
   "parent":{
     "name":"Curves",
     "path":"folders/Tweeny/Curves.yy",

@@ -1,8 +1,8 @@
 // feather ignore all
-function Tween(source = undefined) constructor {
+function Tweeny(source = undefined) constructor {
     
     #region Private
-    static __data = __TweenInit();
+    static __data = __TweenyInit();
     __source = source;
     __steps = [];
     __current = 0;
@@ -76,7 +76,7 @@ function Tween(source = undefined) constructor {
         }
     }
     static __Execute = function(step, dt) {
-        static __data = __TweenInit();
+        static __data = __TweenyInit();
         if (step.__remaining > 0) {
             step.__remaining -= dt;
             return;
@@ -166,23 +166,23 @@ function Tween(source = undefined) constructor {
     #endregion
     
     static Variable = function(instance, variable, target, duration) {
-        var _step = __Build(__TweenVariable, instance, variable, target, duration)
+        var _step = __Build(__TweenyVariable, instance, variable, target, duration)
         return __Push(_step);
     }
     static Color = function(instance, variable, target, duration) {
-        var _step = __Build(__TweenColor, instance, variable, target, duration)
+        var _step = __Build(__TweenyColor, instance, variable, target, duration)
         return __Push(_step);
     }
     static Angle = function(instance, variable, target, duration) {
-        var _step = __Build(__TweenAngle, instance, variable, target, duration)
+        var _step = __Build(__TweenyAngle, instance, variable, target, duration)
         return __Push(_step);
     }
     static String = function(instance, variable, target, duration) {
-        var _step = __Build(__TweenString, instance, variable, target, duration)
+        var _step = __Build(__TweenyString, instance, variable, target, duration)
         return __Push(_step);
     }
     static Method = function(func, from, to, duration) {
-        var _step = new __TweenMethod();
+        var _step = new __TweenyMethod();
         _step.__func = func;
         _step.__from = from;
         _step.__target = to;
@@ -190,25 +190,25 @@ function Tween(source = undefined) constructor {
         return __Push(_step);
     }
     static Interval = function(duration) {
-        var _step = new __TweenInterval();
+        var _step = new __TweenyInterval();
         _step.__duration = duration;
         return __Push(_step);
     }
     static Callback = function(func, args = []) {
-        var _step = new __TweenCallback();
+        var _step = new __TweenyCallback();
         _step.__func = func;
         _step.__args = (is_array(args) ? args : [args]);
         return __Push(_step);
     }
     
     static ParallelBegin = function() {
-        if (__parallel) __TweenError("ParallelBegin() called without closing previous ParallelEnd()", true);
+        if (__parallel) __TweenyError("ParallelBegin() called without closing previous ParallelEnd()", true);
         __parallel = true;
         array_push(__steps, []);
         return self;
     }
     static ParallelEnd = function() {
-        if (!__parallel) __TweenError("ParallelEnd() called without a matching ParallelBegin()", true);
+        if (!__parallel) __TweenyError("ParallelEnd() called without a matching ParallelBegin()", true);
         __parallel = false;
         return self;
     }

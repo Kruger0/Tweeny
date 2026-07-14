@@ -17,15 +17,15 @@ enum __TWEEN_TYPE {
 #macro TWEEN_CHANNEL_IN_OUT "InOut"
 #macro TWEEN_CHANNEL_OUT_IN "OutIn"
 
-#macro TWEEN_EASE_LINEAR    __TweenEaseLinear
-#macro TWEEN_EASE_SINE      __TweenEaseSine
-#macro TWEEN_EASE_QUAD      __TweenEaseQuad
-#macro TWEEN_EASE_CUBIC     __TweenEaseCubic
-#macro TWEEN_EASE_QUART     __TweenEaseQuart
-#macro TWEEN_EASE_QUINT     __TweenEaseQuint
-#macro TWEEN_EASE_EXPO      __TweenEaseExpo
-#macro TWEEN_EASE_CIRC      __TweenEaseCirc
-#macro TWEEN_EASE_BACK      __TweenEaseBack
-#macro TWEEN_EASE_BOUNCE    __TweenEaseBounce
-#macro TWEEN_EASE_ELASTIC   __TweenEaseElastic
-#macro TWEEN_EASE_SPRING    __TweenEaseSpring
+#macro TWEEN_EASE_LINEAR    __TweenyEaseLinear
+#macro TWEEN_EASE_SINE      __TweenyEaseSine
+#macro TWEEN_EASE_QUAD      __TweenyEaseQuad
+#macro TWEEN_EASE_CUBIC     __TweenyEaseCubic
+#macro TWEEN_EASE_QUART     __TweenyEaseQuart
+#macro TWEEN_EASE_QUINT     __TweenyEaseQuint
+#macro TWEEN_EASE_EXPO      __TweenyEaseExpo
+#macro TWEEN_EASE_CIRC      __TweenyEaseCirc
+#macro TWEEN_EASE_BACK      __TweenyEaseBack
+#macro TWEEN_EASE_BOUNCE    __TweenyEaseBounce
+#macro TWEEN_EASE_ELASTIC   __TweenyEaseElastic
+#macro TWEEN_EASE_SPRING    __TweenyEaseSpring

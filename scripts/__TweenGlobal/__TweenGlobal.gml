@@ -1,39 +1,39 @@
 // feather ignore all
 
-function TweenSetDeltatime(dt) {
-    static __data = __TweenInit();
+function TweenySetDeltatime(dt) {
+    static __data = __TweenyInit();
     __data.dt = dt;
 }
 
-function TweenPauseAll() {
-    static __data = __TweenInit();
+function TweenyPauseAll() {
+    static __data = __TweenyInit();
     time_source_pause(__data.timeSource);
 }
 
-function TweenResumeAll() {
-    static __data = __TweenInit();
+function TweenyResumeAll() {
+    static __data = __TweenyInit();
     time_source_start(__data.timeSource);
 }
 
-function TweenStopAll() {
-    static __data = __TweenInit();
+function TweenyStopAll() {
+    static __data = __TweenyInit();
     time_source_stop(__data.timeSource);
 }
 
-function TweenClearAll() {
-    static __data = __TweenInit();
+function TweenyClearAll() {
+    static __data = __TweenyInit();
     var _tweens = __data.tweens;
     for (var i = 0; i < array_length(_tweens); i++) {
         _tweens[i].__dead = true;
     }
 }
 
-function TweenDestroyAll() {
-    static __data = __TweenInit();
+function TweenyDestroyAll() {
+    static __data = __TweenyInit();
     time_source_destroy(__data.timeSource);
 }
 
-function TweenGetAll() {
-    static __data = __TweenInit();
+function TweenyGetAll() {
+    static __data = __TweenyInit();
     return __data.tweens;
 }
