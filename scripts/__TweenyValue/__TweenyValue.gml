@@ -1,7 +1,7 @@
 // feather ignore all
 /// @ignore
 function __TweenyValue() : __TweenyStep() constructor {
-    __type = __TWEEN_TYPE.VALUE;
+    __type = __TWEENY_TYPE.VALUE;
     
     static SetEase = function(animCurve, animChannel = 0) {
         __ease = animcurve_get_channel(animCurve, animChannel);
@@ -32,30 +32,30 @@ function __TweenyValue() : __TweenyStep() constructor {
 
 /// @ignore
 function __TweenyVariable() : __TweenyValue() constructor {
-    __type = __TWEEN_TYPE.VARIABLE;
+    __type = __TWEENY_TYPE.VARIABLE;
     __lerp = __TweenyLerpValue;
 }
 
 /// @ignore
 function __TweenyColor() : __TweenyValue() constructor {
-    __type = __TWEEN_TYPE.COLOR;
+    __type = __TWEENY_TYPE.COLOR;
     __lerp = __TweenyLerpColor;
 }
 
 /// @ignore
 function __TweenyAngle() : __TweenyValue() constructor {
-    __type = __TWEEN_TYPE.ANGLE;
+    __type = __TWEENY_TYPE.ANGLE;
     __lerp = __TweenyLerpAngle;
 }
 
 /// @ignore
 function __TweenyString() : __TweenyValue() constructor {
-    __type = __TWEEN_TYPE.STRING;
+    __type = __TWEENY_TYPE.STRING;
     __lerp = __TweenyLerpString;
 }
 
 /// @ignore
 function __TweenyMethod() : __TweenyValue() constructor {
-    __type = __TWEEN_TYPE.METHOD;
+    __type = __TWEENY_TYPE.METHOD;
     __lerp = __TweenyLerpValue;
 }

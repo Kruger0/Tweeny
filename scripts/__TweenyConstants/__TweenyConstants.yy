@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__TweenStep",
+  "%Name":"__TweenyConstants",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__TweenStep",
+  "name":"__TweenyConstants",
   "parent":{
     "name":"Scripts",
     "path":"folders/Tweeny/Scripts.yy",

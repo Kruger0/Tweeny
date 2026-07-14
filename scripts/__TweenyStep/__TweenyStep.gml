@@ -20,11 +20,11 @@ function __TweenyStep() constructor {
 
 /// @ignore
 function __TweenyInterval() : __TweenyStep() constructor {
-    __type = __TWEEN_TYPE.INTERVAL;
+    __type = __TWEENY_TYPE.INTERVAL;
 }
 
 /// @ignore
 function __TweenyCallback() : __TweenyStep() constructor {
-    __type = __TWEEN_TYPE.CALLBACK;
+    __type = __TWEENY_TYPE.CALLBACK;
     __args = undefined;
 }

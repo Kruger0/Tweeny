@@ -10,7 +10,7 @@ function __TweenyDebug() {
     var _btnWidth   = _viewWidth-24;
     
     if (!dbg_view_exists(__data.dbgView)) {
-        __data.dbgView = dbg_view($"GM-Tweeny v{__TWEEN_VERSION}", false, 256, 32, _viewWidth, _viewHeight);
+        __data.dbgView = dbg_view($"Tweeny v{__TWEENY_VERSION}", false, 256, 32, _viewWidth, _viewHeight);
     }
     
     dbg_section_delete(__data.dbgSections[$ "general"]);

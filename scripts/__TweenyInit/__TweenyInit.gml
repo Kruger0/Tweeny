@@ -7,7 +7,7 @@ function __TweenyInit() {
             dt: 1,
             tweens: [],
             timeSource: undefined,
-            defaultEase: animcurve_get_channel(TWEEN_EASE_LINEAR, TWEEN_CHANNEL_IN),
+            defaultEase: animcurve_get_channel(TWEENY_EASE_LINEAR, TWEENY_CHANNEL_IN),
             dbgView: pointer_null,
             dbgSections: {},
             dbgMode: false,

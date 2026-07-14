@@ -90,23 +90,23 @@ function Tweeny(source = undefined) constructor {
             var _amt = animcurve_channel_evaluate(_ease, _pos);
             var _result = __lerp(__from, _to, _amt);
             switch (__type) {
-                case __TWEEN_TYPE.VARIABLE:
-                case __TWEEN_TYPE.COLOR:
-                case __TWEEN_TYPE.ANGLE:
-                case __TWEEN_TYPE.STRING:{
+                case __TWEENY_TYPE.VARIABLE:
+                case __TWEENY_TYPE.COLOR:
+                case __TWEENY_TYPE.ANGLE:
+                case __TWEENY_TYPE.STRING:{
                     __instance[$ __variable] = _result;
                 } break;
             
-                case __TWEEN_TYPE.INTERVAL: {
+                case __TWEENY_TYPE.INTERVAL: {
                     // Wait
                 } break;
             
-                case __TWEEN_TYPE.CALLBACK: {
+                case __TWEENY_TYPE.CALLBACK: {
                     method_call(__func, __args);
                     __done = true;
                 } break;
                 
-                case __TWEEN_TYPE.METHOD: {
+                case __TWEENY_TYPE.METHOD: {
                     method_call(__func, [_result]);
                 } break;
             }
