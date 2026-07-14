@@ -30,7 +30,7 @@
   "name":"__TweenEaseExpo",
   "parent":{
     "name":"Curves",
-    "path":"folders/GM-Tween/Curves.yy",
+    "path":"folders/Tweeny/Curves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

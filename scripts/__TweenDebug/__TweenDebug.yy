@@ -6,7 +6,7 @@
   "name":"__TweenDebug",
   "parent":{
     "name":"Scripts",
-    "path":"folders/GM-Tween/Scripts.yy",
+    "path":"folders/Tweeny/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
