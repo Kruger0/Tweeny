@@ -3,56 +3,49 @@
 [![GameMaker](https://img.shields.io/badge/GameMaker-LTS2026-blue?logo=gamemaker)](https://gamemaker.io/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/GM-Tween)](https://github.com/Kruger0/GM-Tween/commits)
 <div align="center">
-  <h1>GM-Tween 0.5.2</h1>
+  <h1>Tweeny 1.0.0</h1>
 </div>
-GM-Tween is a tweening engine made for GameMaker, featuring a fluent chainable API, 12 easing curves, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
+Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, more than 50 easing modes, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
 ## How to use!
 
 1. Create a tween instance and chain steps together:
    ```js
    // Create a new tween
-   tween = new Tween();
+   t = new Tween();
 
-   // Animate a variable over 60 frames
-   tween.Variable(obj_player, "x", 300, 60)
-        .Execute();
+   // Animate a variable over 2 seconds
+   t.Variable(obj_player, "x", 300, 2);
    ```
 
 2. Use the fluent API to configure steps inline:
    ```js
    // Chain multiple steps with easing
-   tween.Variable(obj_player, "x", 300, 60)
-           .SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT)
-        .Variable(obj_player, "y", 400, 60)
-           .SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT)
-        .Execute();
+   t.Variable(obj_player, "x", 300, 1).SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT);
+   t.Variable(obj_player, "y", 400, 1).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
    ```
 
 3. Run steps in parallel for simultaneous animations:
    ```js
    // Move X and Y at the same time
-   tween.ParallelBegin()
-           .Variable(obj_player, "x", 300, 60)
-           .Variable(obj_player, "y", 400, 60)
-        .ParallelEnd()
-        .Execute();
+   t.ParallelBegin();
+   t.Variable(obj_player, "x", 300, 1);
+   t.Variable(obj_player, "y", 400, 1);
+   t.ParallelEnd();
    ```
 
 4. Set loops, callbacks, and control playback:
    ```js
-   tween.Variable(obj_player, "x", 300, 60)
-        .Variable(obj_player, "x", 100, 60)
-        .SetLoops(3)
-        .OnFinished(function() {
-            show_debug_message("Animation complete!");
-        })
-        .Execute();
+   t.Variable(obj_player, "x", 300, 1)
+   t.Variable(obj_player, "x", 100, 1)
+   t.SetLoops(3).OnFinished(function() {
+      show_debug_message("Animation complete!");
+   })
 
    // Control playback
-   tween.Pause();
-   tween.Play();
-   tween.Skip();  // Jump to end
+   t.Pause();
+   t.Play();
+   t.Skip();  // Jump to end
    ```
 
 ## Advanced Features
@@ -61,96 +54,80 @@ GM-Tween is a tweening engine made for GameMaker, featuring a fluent chainable A
 12 easing curves are available via macros, each with In, Out, InOut, and OutIn channels:
 ```js
 // Set easing on the whole tween
-tween.SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT)
-     .Variable(obj, "x", 500, 60)
-     .Execute();
+t.SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT)
+t.Variable(obj, "x", 500, 1)
 
 // Or per-step
-tween.Variable(obj, "x", 500, 60)
-        .SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_IN)
-     .Execute();
+t.Variable(obj, "x", 500, 1).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_IN)
 ```
 
-Available curves: `TWEEN_EASE_LINEAR`, `TWEEN_EASE_SINE`, `TWEEN_EASE_QUAD`, `TWEEN_EASE_CUBIC`, `TWEEN_EASE_QUART`, `TWEEN_EASE_QUINT`, `TWEEN_EASE_EXPO`, `TWEEN_EASE_CIRC`, `TWEEN_EASE_BACK`, `TWEEN_EASE_BOUNCE`, `TWEEN_EASE_ELASTIC`, `TWEEN_EASE_SPRING`.
+Available curves: `TWEEN_EASE_STEP`, `TWEEN_EASE_LINEAR`, `TWEEN_EASE_SINE`, `TWEEN_EASE_QUAD`, `TWEEN_EASE_CUBIC`, `TWEEN_EASE_QUART`, `TWEEN_EASE_QUINT`, `TWEEN_EASE_EXPO`, `TWEEN_EASE_CIRC`, `TWEEN_EASE_BACK`, `TWEEN_EASE_BOUNCE`, `TWEEN_EASE_ELASTIC`, `TWEEN_EASE_SPRING`.
 
 ### Color & Angle Interpolation
 Color and angle tweens handle their types automatically:
 ```js
 // Fade a color
-tween.Color(obj, "colour", c_red, 60).Execute();
+t.Color(obj, "colour", c_red, 1);
 
 // Rotate with shortest angle path
-tween.Angle(obj, "image_angle", 720, 120).Execute();
+t.Angle(obj, "image_angle", 720, 2);
 ```
 
 ### String Animation
 Animate strings by interpolating character ordinals:
 ```js
-tween.String(obj, "caption", "HELLO WORLD", 60).Execute();
+t.String(obj, "caption", "HELLO WORLD", 1);
 ```
 
 ### Custom Method Tween
 Animate arbitrary values through a callback function:
 ```js
-tween.Method(function(value) {
+t.Method(function(value) {
     audio_set_gain(snd_music, value, 0);
-}, 0, 1, 120)
-.SetEase(TWEEN_EASE_SINE, TWEEN_CHANNEL_IN)
-.Execute();
+}, 0, 1, 2).SetEase(TWEEN_EASE_SINE, TWEEN_CHANNEL_IN);
 ```
 
 ### Relative Values
 Target values relative to the current value:
 ```js
-tween.Variable(obj, "x", 200, 60)
-        .Relative()
-     .Execute();
+t.Variable(obj, "x", 200, 1).Relative();
 ```
 
 ### From Values
 Override the starting value of a step:
 ```js
-tween.Variable(obj, "x", 500, 60)
-        .From(0)
-     .Execute();
+t.Variable(obj, "x", 500, 1).From(0);
 ```
 
 ### Delay & Interval
 Add delays between steps or wait without animation:
 ```js
-tween.Variable(obj, "x", 300, 60)
-     .Interval(30)             // Wait 30 frames
-     .Variable(obj, "y", 400, 60)
-     .Callback(function() {    // Fire a callback mid-sequence
-         show_debug_message("Halfway!");
-     })
-     .Execute();
+t.Variable(obj, "x", 300, 2);
+t.Interval(1); // Wait 1 second
+t.Variable(obj, "y", 400, 2);
 ```
 
 ### Looping
 Loop animations a finite number of times or infinitely:
 ```js
 // Infinite loop
-tween.Variable(obj, "x", 500, 60)
-     .Variable(obj, "x", 100, 60)
-     .SetLoops()
-     .Execute();
+t.Variable(obj, "x", 500, 1);
+t.Variable(obj, "x", 100, 1);
+t.SetLoops();
 
 // Loop 5 times
-tween.SetLoops(5).Execute();
+t.SetLoops(5);
 
 // Listen for loop completions
-tween.OnLoopFinished(function() {
+t.OnLoopFinished(function() {
     show_debug_message("Loop finished!");
-}).Execute();
+});
 ```
 
 ### Custom Interpolation
 Provide your own lerp function for a step:
 ```js
-tween.Variable(obj, "x", 500, 60)
-        .SetInterpolate(customLerp)
-     .Execute();
+t.Variable(obj, "x", 500, 1).SetInterpolate(customLerp);
 ```
 
 ### Global Control
@@ -175,7 +152,7 @@ TweenSetDeltatime(1.0);
 ## Complete API Reference
 
 ### Tween Constructor - `new Tween([source])`
-Creates a new tween chain. Optional `source` instance - the tween auto-destructs if the source is destroyed.
+Creates a new tween chain. Optional `source` instance - the tween auto-destructs if the source is destroyed. Leave undefined if the tween is inside a struct or script
 
 ### Step Methods
 - `Variable(instance, variable, target, duration)` - Animate any numeric variable
@@ -212,6 +189,7 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 ### Tween Queries
 - `IsRunning()` - Check if the tween is actively playing
 - `IsPaused()` - Check if the tween is paused
+- `IsValie()` - Check if the tween is valid
 - `GetLoops()` - Get total loop count
 - `GetLoopsLeft()` - Get remaining loops
 - `GetElapsedTime()` - Get elapsed time
