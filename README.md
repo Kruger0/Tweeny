@@ -1,18 +1,18 @@
-[![GitHub license](https://img.shields.io/github/license/Kruger0/GM-Tween)](https://github.com/Kruger0/GM-Tween/blob/main/LICENSE)
-[![GitHub release](https://img.shields.io/github/v/release/Kruger0/GM-Tween)](https://github.com/Kruger0/GM-Tween/releases)
+[![GitHub license](https://img.shields.io/github/license/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/releases)
 [![GameMaker](https://img.shields.io/badge/GameMaker-LTS2026-blue?logo=gamemaker)](https://gamemaker.io/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/GM-Tween)](https://github.com/Kruger0/GM-Tween/commits)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/commits)
 <div align="center">
   <h1>Tweeny 1.0.0</h1>
 </div>
-Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, more than 50 easing modes, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
+Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, fire-and-forget use, more than 50 easing modes, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
 ## How to use!
 
 1. Create a tween instance and chain steps together:
    ```js
    // Create a new tween
-   t = new Tween();
+   t = new Tweeny();
 
    // Animate a variable over 2 seconds
    t.Variable(obj_player, "x", 300, 2);
@@ -21,8 +21,8 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 2. Use the fluent API to configure steps inline:
    ```js
    // Chain multiple steps with easing
-   t.Variable(obj_player, "x", 300, 1).SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT);
-   t.Variable(obj_player, "y", 400, 1).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_OUT);
+   t.Variable(obj_player, "x", 300, 1).SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT);
+   t.Variable(obj_player, "y", 400, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
    ```
 
 3. Run steps in parallel for simultaneous animations:
@@ -54,14 +54,12 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 12 easing curves are available via macros, each with In, Out, InOut, and OutIn channels:
 ```js
 // Set easing on the whole tween
-t.SetEase(TWEEN_EASE_BOUNCE, TWEEN_CHANNEL_OUT)
+t.SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT)
 t.Variable(obj, "x", 500, 1)
 
 // Or per-step
-t.Variable(obj, "x", 500, 1).SetEase(TWEEN_EASE_ELASTIC, TWEEN_CHANNEL_IN)
+t.Variable(obj, "x", 500, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_IN)
 ```
-
-Available curves: `TWEEN_EASE_STEP`, `TWEEN_EASE_LINEAR`, `TWEEN_EASE_SINE`, `TWEEN_EASE_QUAD`, `TWEEN_EASE_CUBIC`, `TWEEN_EASE_QUART`, `TWEEN_EASE_QUINT`, `TWEEN_EASE_EXPO`, `TWEEN_EASE_CIRC`, `TWEEN_EASE_BACK`, `TWEEN_EASE_BOUNCE`, `TWEEN_EASE_ELASTIC`, `TWEEN_EASE_SPRING`.
 
 ### Color & Angle Interpolation
 Color and angle tweens handle their types automatically:
@@ -84,7 +82,7 @@ Animate arbitrary values through a callback function:
 ```js
 t.Method(function(value) {
     audio_set_gain(snd_music, value, 0);
-}, 0, 1, 2).SetEase(TWEEN_EASE_SINE, TWEEN_CHANNEL_IN);
+}, 0, 1, 2).SetEase(TWEENY_EASE_SINE, TWEENY_CHANNEL_IN);
 ```
 
 ### Relative Values
@@ -133,25 +131,25 @@ t.Variable(obj, "x", 500, 1).SetInterpolate(customLerp);
 ### Global Control
 Manage all tweens at once:
 ```js
-TweenPauseAll();
-TweenResumeAll();
-TweenStopAll();
-TweenClearAll();
-TweenDestroyAll();
+TweenyPauseAll();
+TweenyResumeAll();
+TweenyStopAll();
+TweenyClearAll();
+TweenyDestroyAll();
 
 // Get all active tweens
-var all = TweenGetAll();
+var all = TweenyGetAll();
 ```
 
 ### Deltatime
 Override the deltatime for frame-independent animation:
 ```js
-TweenSetDeltatime(1.0);
+TweenySetDeltatime(1.0);
 ```
 
 ## Complete API Reference
 
-### Tween Constructor - `new Tween([source])`
+### Tween Constructor - `new Tweeny([source])`
 Creates a new tween chain. Optional `source` instance - the tween auto-destructs if the source is destroyed. Leave undefined if the tween is inside a struct or script
 
 ### Step Methods
@@ -189,7 +187,7 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 ### Tween Queries
 - `IsRunning()` - Check if the tween is actively playing
 - `IsPaused()` - Check if the tween is paused
-- `IsValie()` - Check if the tween is valid
+- `IsValid()` - Check if the tween is valid
 - `GetLoops()` - Get total loop count
 - `GetLoopsLeft()` - Get remaining loops
 - `GetElapsedTime()` - Get elapsed time
@@ -200,16 +198,16 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 - `OnStepFinished(callback)` - Called when an individual step completes
 
 ### Global Functions
-- `TweenSetDeltatime(dt)` - Override the global deltatime
-- `TweenPauseAll()` - Pause all active tweens
-- `TweenResumeAll()` - Resume all paused tweens
-- `TweenStopAll()` - Stop all tweens
-- `TweenClearAll()` - Destroy all tweens
-- `TweenDestroyAll()` - Destroy the tween system entirely
-- `TweenGetAll()` - Get an array of all active tweens
+- `TweenySetDeltatime(dt)` - Override the global deltatime
+- `TweenyPauseAll()` - Pause all active tweens
+- `TweenyResumeAll()` - Resume all paused tweens
+- `TweenyStopAll()` - Stop all tweens
+- `TweenyClearAll()` - Destroy all tweens
+- `TweenyDestroyAll()` - Destroy the tween system entirely
+- `TweenyGetAll()` - Get an array of all active tweens
 
 ### Easing Curve Macros
-- `TWEEN_EASE_LINEAR`, `TWEEN_EASE_SINE`, `TWEEN_EASE_QUAD`, `TWEEN_EASE_CUBIC`, `TWEEN_EASE_QUART`, `TWEEN_EASE_QUINT`, `TWEEN_EASE_EXPO`, `TWEEN_EASE_CIRC`, `TWEEN_EASE_BACK`, `TWEEN_EASE_BOUNCE`, `TWEEN_EASE_ELASTIC`, `TWEEN_EASE_SPRING`
+- `TWEENY_EASE_STEP`, `TWEENY_EASE_LINEAR`, `TWEENY_EASE_SINE`, `TWEENY_EASE_QUAD`, `TWEENY_EASE_CUBIC`, `TWEENY_EASE_QUART`, `TWEENY_EASE_QUINT`, `TWEENY_EASE_EXPO`, `TWEENY_EASE_CIRC`, `TWEENY_EASE_BACK`, `TWEENY_EASE_BOUNCE`, `TWEENY_EASE_ELASTIC`, `TWEENY_EASE_SPRING`
 
 ### Easing Channel Macros
-- `TWEEN_CHANNEL_IN`, `TWEEN_CHANNEL_OUT`, `TWEEN_CHANNEL_IN_OUT`, `TWEEN_CHANNEL_OUT_IN`
+- `TWEENY_CHANNEL_IN`, `TWEENY_CHANNEL_OUT`, `TWEENY_CHANNEL_IN_OUT`, `TWEENY_CHANNEL_OUT_IN`
