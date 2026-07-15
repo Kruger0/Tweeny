@@ -1,7 +1,6 @@
 // feather ignore all
 /// @ignore
 function __TweenyLerpValue(val1, val2, amount) {
-    //return val1 + (val2 - val1) * amount;
     return lerp(val1, val2, amount);
 }
 

@@ -14,6 +14,7 @@ function Tweeny(source = undefined) constructor {
     __parallel = false;
     __dead = false;
     __elapsed = 0;
+	__totalElapsed = 0;
     __onFinishedCb = [];
     __onLoopFinishedCb = [];
     __onStepFinishedCb = [];
@@ -49,6 +50,7 @@ function Tweeny(source = undefined) constructor {
 	    var _slot = __steps[__current];
 	    var _dt = (__data.dt / game_get_speed(gamespeed_fps)) * __speed;
 	    __elapsed += _dt;
+		__totalElapsed += _dt;
 	    if (is_array(_slot)) {
 	        // Parallel
 	        var _done = true;
@@ -240,6 +242,9 @@ function Tweeny(source = undefined) constructor {
     static GetElapsedTime = function() {
         return __elapsed;
     }
+	static GetTotalElapsedTime = function() {
+	    return __totalElapsed;
+	}
     
     static IsRunning = function() {
         return !__paused && !__dead;
@@ -247,6 +252,9 @@ function Tweeny(source = undefined) constructor {
     static IsPaused = function() {
         return __paused;
     }
+	static IsValid = function() {
+	    return !__dead && array_contains(__data.tweens, self);
+	}
     
     static OnFinished = function(callback) {
         array_push(__onFinishedCb, callback);
@@ -285,6 +293,7 @@ function Tweeny(source = undefined) constructor {
     }
     static Stop = function() {
         __paused = true;
+		__totalElapsed = 0;
         __Reset();
         return self;
     }
