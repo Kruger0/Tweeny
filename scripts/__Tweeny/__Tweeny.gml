@@ -44,37 +44,35 @@ function Tweeny(source = undefined) constructor {
         if (!__paused) __Process();
     }
     static __Process = function() {
-        if (array_length(__steps) == 0) return;
-        if (__current >= array_length(__steps)) return;
-        var _slot = __steps[__current];
-        var _dt = (__data.dt / game_get_speed(gamespeed_fps)) * __speed;
-        __elapsed += _dt;
-        
-        if (is_array(_slot)) {
-            // Parallel
-            var _done = true;
-            for (var i = 0; i < array_length(_slot); i++) {
-                var _step = _slot[i];
-                if (!_step.__done) {
-                    var _wasDone = _step.__done;
-                    __Execute(_step, _dt);
-                    if (!_wasDone && _step.__done) {
-                        __Trigger(__onStepFinishedCb);
-                    }
-                    if (!_step.__done) _done = false;
-                }
-            }
-            if (_done) __Advance();
-        } else {
-            // Sequential
-            var _wasDone = _slot.__done;
-            __Execute(_slot, _dt);
-            if (!_wasDone && _slot.__done) {
-                __Trigger(__onStepFinishedCb);
-                __Advance();
-            }
-        }
-    }
+	    if (array_length(__steps) == 0) return;
+	    if (__current >= array_length(__steps)) return;
+	    var _slot = __steps[__current];
+	    var _dt = (__data.dt / game_get_speed(gamespeed_fps)) * __speed;
+	    __elapsed += _dt;
+	    if (is_array(_slot)) {
+	        // Parallel
+	        var _done = true;
+	        for (var i = 0; i < array_length(_slot); i++) {
+	            var _step = _slot[i];
+	            if (!_step.__done) {
+	                __Execute(_step, _dt);
+	                if (!_step.__done) _done = false;
+	            }
+	        }
+	        if (_done) {
+	            __Trigger(__onStepFinishedCb);
+	            __Advance();
+	        }
+	    } else {
+	        // Sequential
+	        var _wasDone = _slot.__done;
+	        __Execute(_slot, _dt);
+	        if (!_wasDone && _slot.__done) {
+	            __Trigger(__onStepFinishedCb);
+	            __Advance();
+	        }
+	    }
+	}
     static __Execute = function(step, dt) {
         static __data = __TweenyInit();
         if (step.__remaining > 0) {
@@ -125,7 +123,7 @@ function Tweeny(source = undefined) constructor {
                     __dead = true;
                     __Trigger(__onFinishedCb);
                 } else {
-                    __Trigger(__onStepFinishedCb);
+                    __Trigger(__onLoopFinishedCb);
                     __Reset();
                 }
             }
@@ -142,22 +140,28 @@ function Tweeny(source = undefined) constructor {
                     _step.__elapsed = 0;
                     _step.__done = false;
                     _step.__remaining = _step.__delay;
+					if (!_step.__fromExplicit) _step.__from = undefined;
                 }
             } else {
                 _slot.__elapsed = 0;
                 _slot.__done = false;
                 _slot.__remaining = _slot.__delay;
+				if (!_slot.__fromExplicit) _slot.__from = undefined;
             }
         }
     }
     static __Skip = function(step) {
-        with (step) {
-            __from ??= ((is_struct(__instance) || instance_exists(__instance ?? noone)) ? (__instance[$ __variable] ?? 0) : 0);
-            var _to = (__relative ? __from + __target : __target);
-            __instance[$ __variable] = _to;
-            __done = true;
-        }
-    }
+	    with (step) {
+	        if (__type == __TWEENY_TYPE.INTERVAL || __type == __TWEENY_TYPE.CALLBACK) {
+	            __done = true;
+	            return;
+	        }
+	        __from ??= ((is_struct(__instance) || instance_exists(__instance ?? noone)) ? (__instance[$ __variable] ?? 0) : 0);
+	        var _to = (__relative ? __from + __target : __target);
+	        __instance[$ __variable] = _to;
+	        __done = true;
+	    }
+	}
     static __Trigger = function(array) {
         for (var i = 0; i < array_length(array); i++) {
             method_call(array[i])
