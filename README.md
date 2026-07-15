@@ -15,29 +15,29 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
    t = new Tweeny();
 
    // Animate a variable over 2 seconds
-   t.Variable(obj_player, "x", 300, 2);
+   t.Variable(id, "x", 300, 2);
    ```
 
 2. Use the fluent API to configure steps inline:
    ```js
    // Chain multiple steps with easing
-   t.Variable(obj_player, "x", 300, 1).SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT);
-   t.Variable(obj_player, "y", 400, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
+   t.Variable(id, "x", 300, 1).SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT);
+   t.Variable(id, "y", 400, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
    ```
 
 3. Run steps in parallel for simultaneous animations:
    ```js
    // Move X and Y at the same time
    t.ParallelBegin();
-   t.Variable(obj_player, "x", 300, 1);
-   t.Variable(obj_player, "y", 400, 1);
+   t.Variable(id, "x", 300, 1);
+   t.Variable(id, "y", 400, 1);
    t.ParallelEnd();
    ```
 
 4. Set loops, callbacks, and control playback:
    ```js
-   t.Variable(obj_player, "x", 300, 1)
-   t.Variable(obj_player, "x", 100, 1)
+   t.Variable(id, "x", 300, 1)
+   t.Variable(id, "x", 100, 1)
    t.SetLoops(3).OnFinished(function() {
       show_debug_message("Animation complete!");
    })
@@ -55,26 +55,26 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 ```js
 // Set easing on the whole tween
 t.SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT)
-t.Variable(obj, "x", 500, 1)
+t.Variable(id, "x", 500, 1)
 
 // Or per-step
-t.Variable(obj, "x", 500, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_IN)
+t.Variable(id, "x", 500, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_IN)
 ```
 
 ### Color & Angle Interpolation
 Color and angle tweens handle their types automatically:
 ```js
 // Fade a color
-t.Color(obj, "colour", c_red, 1);
+t.Color(id, "colour", c_red, 1);
 
 // Rotate with shortest angle path
-t.Angle(obj, "image_angle", 720, 2);
+t.Angle(id, "image_angle", 720, 2);
 ```
 
 ### String Animation
 Animate strings by interpolating character ordinals:
 ```js
-t.String(obj, "caption", "HELLO WORLD", 1);
+t.String(id, "caption", "HELLO WORLD", 1);
 ```
 
 ### Custom Method Tween
@@ -88,29 +88,29 @@ t.Method(function(value) {
 ### Relative Values
 Target values relative to the current value:
 ```js
-t.Variable(obj, "x", 200, 1).Relative();
+t.Variable(id, "x", 200, 1).Relative();
 ```
 
 ### From Values
 Override the starting value of a step:
 ```js
-t.Variable(obj, "x", 500, 1).From(0);
+t.Variable(id, "x", 500, 1).From(0);
 ```
 
 ### Delay & Interval
 Add delays between steps or wait without animation:
 ```js
-t.Variable(obj, "x", 300, 2);
+t.Variable(id, "x", 300, 2);
 t.Interval(1); // Wait 1 second
-t.Variable(obj, "y", 400, 2);
+t.Variable(id, "y", 400, 2);
 ```
 
 ### Looping
 Loop animations a finite number of times or infinitely:
 ```js
 // Infinite loop
-t.Variable(obj, "x", 500, 1);
-t.Variable(obj, "x", 100, 1);
+t.Variable(id, "x", 500, 1);
+t.Variable(id, "x", 100, 1);
 t.SetLoops();
 
 // Loop 5 times
@@ -125,7 +125,7 @@ t.OnLoopFinished(function() {
 ### Custom Interpolation
 Provide your own lerp function for a step:
 ```js
-t.Variable(obj, "x", 500, 1).SetInterpolate(customLerp);
+t.Variable(id, "x", 500, 1).SetInterpolate(customLerp);
 ```
 
 ### Global Control
