@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__TweenyValue",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Tweeny/Scripts.yy",
+    "name":"Private",
+    "path":"folders/Tweeny/Private.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

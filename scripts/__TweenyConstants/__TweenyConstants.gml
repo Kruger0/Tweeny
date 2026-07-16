@@ -1,5 +1,5 @@
 // feather ignore all
-#macro __TWEENY_VERSION "1.2.0"
+#macro __TWEENY_VERSION "1.1.0"
 
 enum __TWEENY_TYPE {
     VALUE,

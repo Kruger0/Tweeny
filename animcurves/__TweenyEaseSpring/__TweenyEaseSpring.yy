@@ -37,7 +37,7 @@
   "name":"__TweenyEaseSpring",
   "parent":{
     "name":"Curves",
-    "path":"folders/Tweeny/Curves.yy",
+    "path":"folders/Tweeny/Private/Curves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

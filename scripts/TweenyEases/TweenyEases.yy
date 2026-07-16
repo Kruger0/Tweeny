@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"__TweenyConstants",
+  "%Name":"TweenyEases",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__TweenyConstants",
+  "name":"TweenyEases",
   "parent":{
-    "name":"Private",
-    "path":"folders/Tweeny/Private.yy",
+    "name":"Public",
+    "path":"folders/Tweeny/Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

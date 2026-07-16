@@ -7,7 +7,7 @@ function __TweenyInit() {
             dt: 1,
             tweens: [],
             timeSource: undefined,
-            defaultEase: ease_linear,
+            defaultEase: TweenyEaseLinear,
             dbgView: pointer_null,
             dbgSections: {},
             dbgMode: false,

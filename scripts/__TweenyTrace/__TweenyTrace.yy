@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__TweenyConstants",
+  "%Name":"__TweenyTrace",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__TweenyConstants",
+  "name":"__TweenyTrace",
   "parent":{
     "name":"Private",
     "path":"folders/Tweeny/Private.yy",
