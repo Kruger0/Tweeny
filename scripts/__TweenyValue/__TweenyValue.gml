@@ -3,8 +3,12 @@
 function __TweenyValue() : __TweenyStep() constructor {
     __type = __TWEENY_TYPE.VALUE;
     
-    static SetEase = function(animCurve, animChannel = 0) {
-        __ease = animcurve_get_channel(animCurve, animChannel);
+    static SetEaseCurve = function(curve, channel = 0) {
+        __ease = animcurve_get_channel(curve, channel);
+        return self;
+    }
+    static SetEaseFunc = function(func) {
+        __ease = func;
         return self;
     }
     static SetDelay = function(value) {

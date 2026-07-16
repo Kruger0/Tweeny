@@ -81,13 +81,13 @@ function Tweeny(source = undefined) constructor {
             step.__remaining -= dt;
             return;
         }
+        var _ease = step.__ease ?? __ease ?? __data.defaultEase;
         with (step) {
-            var _ease = __ease ?? other.__ease ?? __data.defaultEase;
             __from ??= ((is_struct(__instance) || instance_exists(__instance ?? noone)) ? (__instance[$ __variable] ?? 0) : 0);
             __elapsed += dt;
             var _pos = clamp(__elapsed / __duration, 0, 1);
             var _to = (__relative ? __from + __target : __target);
-            var _amt = animcurve_channel_evaluate(_ease, _pos);
+            var _amt = is_callable(_ease) ? _ease(_pos) : animcurve_channel_evaluate(_ease, _pos);
             var _result = __lerp(__from, _to, _amt);
             switch (__type) {
                 case __TWEENY_TYPE.VARIABLE:
@@ -228,8 +228,12 @@ function Tweeny(source = undefined) constructor {
         __loopsLeft = __loopsTotal;
         return self;
     }
-    static SetEase = function(animCurve, animChannel = 0) {
-        __ease = animcurve_get_channel(animCurve, animChannel);
+    static SetEaseCurve = function(curve, channel = 0) {
+        __ease = animcurve_get_channel(curve, channel);
+        return self;
+    }
+    static SetEaseFunc = function(func) {
+        __ease = func;
         return self;
     }
     

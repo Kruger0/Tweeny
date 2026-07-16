@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__TweenyEasing",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__TweenyEasing",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Tweeny/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

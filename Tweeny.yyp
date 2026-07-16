@@ -50,6 +50,7 @@
     {"id":{"name":"__Tweeny","path":"scripts/__Tweeny/__Tweeny.yy",},},
     {"id":{"name":"__TweenyConstants","path":"scripts/__TweenyConstants/__TweenyConstants.yy",},},
     {"id":{"name":"__TweenyDebug","path":"scripts/__TweenyDebug/__TweenyDebug.yy",},},
+    {"id":{"name":"__TweenyEasing","path":"scripts/__TweenyEasing/__TweenyEasing.yy",},},
     {"id":{"name":"__TweenyError","path":"scripts/__TweenyError/__TweenyError.yy",},},
     {"id":{"name":"__TweenyGlobal","path":"scripts/__TweenyGlobal/__TweenyGlobal.yy",},},
     {"id":{"name":"__TweenyInit","path":"scripts/__TweenyInit/__TweenyInit.yy",},},
