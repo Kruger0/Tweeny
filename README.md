@@ -2,9 +2,12 @@
 [![GitHub release](https://img.shields.io/github/v/release/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/releases)
 [![GameMaker](https://img.shields.io/badge/GameMaker-LTS2026-blue?logo=gamemaker)](https://gamemaker.io/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/commits)
-<div align="center">
-  <h1>Tweeny 1.0.0</h1>
-</div>
+
+<p align="center"><img src="https://raw.githubusercontent.com/Kruger0/Tweeny/main/logo.png" style="display:block; margin:auto; width:300px"></p>
+<h1 align="center">Tweent 1.0.0</h1>
+
+<p align="center">Data format converters for GameMaker LTS 2026</p>
+
 Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, fire-and-forget use, more than 50 easing modes, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
 ## How to use!
