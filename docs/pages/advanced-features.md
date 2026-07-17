@@ -2,7 +2,7 @@
 
 ## Easing Curves
 
-12 easing curves are available via macros, each with In, Out, InOut, and OutIn channels:
+13 easing curves are available via macros, each with In, Out, InOut, and OutIn channels:
 
 ```js
 // Global easing for the entire tween

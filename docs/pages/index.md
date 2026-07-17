@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Kruger0/Tweeny/main/LOGO.png"  style="display:block; margin:auto; width:300px"></p>
 <h1 align="center">Tweeny 1.0.0</h1>
-<p align="center">Tweening animation engine for GameMaker by KrugDev</p>
+<p align="center">Tweening animation engine for GameMaker by <a href="https://github.com/Kruger0">KrugDev</a></p>
 <p align="center"><a href="https://github.com/Kruger0/Tweeny/releases">Download the .yymps here!</a></p>
 
 &nbsp;
@@ -28,7 +28,7 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 
 Tweeny supports all GameMaker platforms as it is written in pure GML. It is supported by GameMaker LTS2026 and later versions.
 
-Tweeny is built and maintained by KrugDev.
+Tweeny is built and maintained by [KrugDev](https://github.com/Kruger0).
 
 If you have problems or find a bug using this library, please [create an issue](https://github.com/Kruger0/Tweeny/issues).
 

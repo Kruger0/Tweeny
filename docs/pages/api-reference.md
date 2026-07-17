@@ -3,7 +3,7 @@
 ## Constructor
 
 `new Tweeny([source])`
-Creates a new tween chain. Optional `source` instance — the tween auto-destructs if the source is destroyed. Leave undefined if the tween is inside a struct or script.
+Creates a new tween chain. Optional `source` instance: the tween auto-destructs if the source is destroyed. Leave undefined if the tween is inside a struct or script.
 
 ## Step Methods
 

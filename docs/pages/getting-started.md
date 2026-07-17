@@ -2,8 +2,9 @@
 
 ## Installation
 
-1. Import the Tweeny asset package into your GameMaker project
-2. Tweeny is ready to use — no additional setup required
+1. Download the latest version of Tweeny from [releases](https://github.com/Kruger0/Tweeny/releases)
+2. On your GameMaker Project top panel, click on Tools -> Import Local Package (or just drag the .yymp)
+2. Press "Add All" and then "Import".
 
 ## Creating a Tween
 
