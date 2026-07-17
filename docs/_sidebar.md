@@ -1,2 +1,4 @@
-- [Read Me](README)
-- [Example Second Page](second-page)
+- [Overview](README)
+- [Getting Started](getting-started)
+- [Advanced Features](advanced-features)
+- [API Reference](api-reference)

@@ -1,27 +1,40 @@
-# Docsify Template
+<p align="center"><img src="https://raw.githubusercontent.com/Kruger0/Tweeny/main/LOGO.png"  style="display:block; margin:auto; width:300px"></p>
+<h1 align="center">Tweeny 1.0</h1>
+<p align="center">Tweening animation engine for GameMaker by KrugDev</p>
 
-> A simple [Docsify](https://github.com/docsifyjs/docsify/) template for creating Markdown-based documentation sites, with no build process required.
+&nbsp;
 
-## Site Setup
+## What is this? {docsify-ignore}
 
-### Static Webserver
-Upload these template files to any static web server. The file `.nojekyll` is only required if hosting the site on GitHub Pages and otherwise can be removed.
+Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, fire-and-forget use, more than 50 easing modes, sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
-### GitHub Pages
+## Features {docsify-ignore}
 
-#### Hosting Site
+- Fluent chainable API
+- 12 easing curves with In, Out, InOut, OutIn channels (50+ modes)
+- Sequential and parallel step execution
+- Variable, Color, Angle, String, and custom Method tweens
+- Looping (finite and infinite)
+- Per-step and global easing
+- Relative values and From overrides
+- Delay and Interval steps
+- Callbacks (OnFinished, OnLoopFinished, OnStepFinished)
+- Global tween control (pause/resume/stop all)
+- Deltatime support
+- Auto-destruct when source instance is destroyed
 
-To host this template on GitHub Pages do the following:  
+## About & Support {docsify-ignore}
 
-1. Log into GitHub if you have not done so already
-2. Tap the **Use this template** button in the upper-right of this GitHub Repository and choose **Create a new repository**
-3. Enter a name for your new Repository and then tap the **Create repository** button
-4. Once your new Repostitory is created go to **Settings**, then select **Pages** from the left-hand sidebar, and under **Branch** choose **main** and then tap the **Save** button
-5. Wait a minute or two and refresh the same **Pages** page - once your site is ready a message will be displayed at the top of the screen along with a site link and a **Visit site** button
+Tweeny supports all GameMaker platforms because it is written in pure GML.
 
-#### Editing Content
+Tweeny is built and maintained by KrugDev.
 
-How about editing the content of your new Docsify site on GitHub Pages? View the Markdown page you want to edit (for example, **README.md**) and tap the **Pencil Icon**, then save any changes by tapping the green **Commit changes...** button. In just a few moments the Docsify site will be automatically updated to reflect those changes.
+If you have problems or find a bug, please [create an issue](https://github.com/Kruger0/Tweeny/issues).
+
+## License {docsify-ignore}
+
+Tweeny is licensed under the [MIT License](https://github.com/Kruger0/Tweeny/blob/main/LICENSE).
+*Commit changes...** button. In just a few moments the Docsify site will be automatically updated to reflect those changes.
 
 ### Viewing Locally 
 Run `npx serve .` (Node.js users) or `python -m http.server 8000` (Python users) in the repo folder to serve run locally.
