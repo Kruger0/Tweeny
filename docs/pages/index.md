@@ -34,11 +34,3 @@ If you have problems or find a bug, please [create an issue](https://github.com/
 ## License {docsify-ignore}
 
 Tweeny is licensed under the [MIT License](https://github.com/Kruger0/Tweeny/blob/main/LICENSE).
-*Commit changes...** button. In just a few moments the Docsify site will be automatically updated to reflect those changes.
-
-### Viewing Locally 
-Run `npx serve .` (Node.js users) or `python -m http.server 8000` (Python users) in the repo folder to serve run locally.
-
-## Docsify Documentation
-
-To learn more about using Docsify, visit https://docsify.js.org.

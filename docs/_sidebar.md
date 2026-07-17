@@ -1,4 +1,4 @@
-- [Overview](README)
-- [Getting Started](getting-started)
-- [Advanced Features](advanced-features)
-- [API Reference](api-reference)
+- [Overview](/)
+- [Getting Started](/pages/getting-started)
+- [Advanced Features](/pages/advanced-features)
+- [API Reference](/pages/api-reference)

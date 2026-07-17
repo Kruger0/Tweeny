@@ -28,9 +28,28 @@
   window.$docsify = {
     name: config.name + ' Docs',
     nameLink: '/',
+    homepage: 'pages/index.md',
     loadSidebar: true,
     subMaxLevel: 3,
     auto2top: true,
+    footer: {
+      pre: '<br><hr>',
+      copy: '<span>' + config.name + ' &copy; ' + new Date().getFullYear() + '</span>',
+      auth:
+              'by KrugDev' +
+              '<br>Docs created with <a href="https://github.com/docsifyjs/docsify/" target="_blank">Docsify</a>',
+      style: 'text-align: right;',
+    },
+    tabs: {
+      persist: false,
+      sync: false,
+      theme: 'classic',
+      tabComments: false,
+      tabHeadings: true,
+    },
+    copyCode: {
+      buttonText: '📋',
+    },
     search: 'auto',
     plugins: [
       function (hook, vm) {
