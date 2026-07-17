@@ -1,11 +1,29 @@
 # `Tweeny()` Methods
 ---
 
-&nbsp;
-
 The core of Tweeny
 
-&nbsp;
+## `Tweeny([source]) constructor`
+
+<!-- tabs:start -->
+
+#### **Description**
+
+**Returns:** A Tween struct instance
+
+| Name | Datatype | Purpose |
+|------------|--------------|---------------------------------------|
+| source     | structOrId   | The tween ref to check if it should be kept alive           |
+
+Subscribe the current object or struct to event and execute function code when event is emitted.
+
+#### **Example**
+
+```gml
+t = new Tweeny(id);
+```
+<!-- tabs:end -->
+
 
 ## `.Variable(scope, variable, target, duration)`
 
