@@ -5,11 +5,11 @@
 
 &nbsp;
 
-## What is this? {docsify-ignore}
+## Introduction
 
-Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, fire-and-forget use, more than 50 included easing modes based on [Robert Penner's easing functions](https://easings.net/), sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
+Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API, fire-and-forget use, more than 50 easing modes based on [Robert Penner's easing functions](https://easings.net/), sequential and parallel step execution, and flexible interpolation for variables, colors, angles, strings, and custom methods.
 
-## Features {docsify-ignore}
+## Features
 
 - Fluent chainable API
 - 13 easing curves with In, Out, InOut, OutIn channels
@@ -24,7 +24,7 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 - Custom deltatime & global time scale support
 - Auto-destruct when source instance is destroyed
 
-## About & Support {docsify-ignore}
+## About & Support
 
 Tweeny supports all GameMaker platforms as it is written in pure GML. It is supported by GameMaker LTS2026 and later versions.
 
@@ -32,6 +32,6 @@ Tweeny is built and maintained by [KrugDev](https://github.com/Kruger0).
 
 If you have problems or find a bug using this library, please [create an issue](https://github.com/Kruger0/Tweeny/issues).
 
-## License {docsify-ignore}
+## License
 
 Tweeny is licensed under the [MIT License](https://github.com/Kruger0/Tweeny/blob/main/LICENSE).

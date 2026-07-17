@@ -1,4 +1,5 @@
 # Complete API Reference
+---
 
 ## Constructor
 
