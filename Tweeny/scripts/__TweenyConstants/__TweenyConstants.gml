@@ -12,6 +12,13 @@ enum __TWEENY_TYPE {
     CALLBACK,
 }
 
+enum TWEENY_TRACE {
+    FORCED      = -1,
+    DISABLED    = 0,
+    CRITICAL    = 1,
+    VERBOSE     = 2,
+}
+
 #macro TWEENY_CHANNEL_IN		"In"
 #macro TWEENY_CHANNEL_OUT		"Out"
 #macro TWEENY_CHANNEL_IN_OUT	"InOut"
