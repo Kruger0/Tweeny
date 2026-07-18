@@ -13,7 +13,7 @@ The core of Tweeny
 
 | Name | Datatype | Purpose |
 |------------|--------------|---------------------------------------|
-| source     | structOrId   | The tween ref to check if it should be kept alive           |
+| source | structOrId   | The tween ref to check if it should be kept alive           |
 
 Subscribe the current object or struct to event and execute function code when event is emitted.
 
