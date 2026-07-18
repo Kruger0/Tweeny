@@ -58,7 +58,7 @@
     {"id":{"name":"__TweenyTrace","path":"scripts/__TweenyTrace/__TweenyTrace.yy",},},
     {"id":{"name":"__TweenyValue","path":"scripts/__TweenyValue/__TweenyValue.yy",},},
     {"id":{"name":"TweenyConfig","path":"scripts/TweenyConfig/TweenyConfig.yy",},},
-    {"id":{"name":"TweenyEases","path":"scripts/TweenyEases/TweenyEases.yy",},},
+    {"id":{"name":"TweenyEase","path":"scripts/TweenyEase/TweenyEase.yy",},},
     {"id":{"name":"TweenyGlobal","path":"scripts/TweenyGlobal/TweenyGlobal.yy",},},
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},},
     {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},},
