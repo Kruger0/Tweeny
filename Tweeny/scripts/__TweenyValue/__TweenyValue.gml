@@ -25,12 +25,12 @@ function __TweenyValue() : __TweenyStep() constructor {
         return self;
     }
     static From = function(value) {
-	    __from = value;
-	    __fromExplicit = true;
-	    return self;
-	}
+        __from = value;
+        __fromExplicit = true;
+        return self;
+    }
     static FromCurrent = function() {
-        __from ??= ((is_struct(__instance) || instance_exists(__instance ?? noone)) ? (__instance[$ __variable] ?? 0) : 0);
+        __from ??= struct_get(__instance ?? {}, __variable) ?? 0;
         return self;
     }
 }

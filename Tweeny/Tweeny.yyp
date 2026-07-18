@@ -46,8 +46,10 @@
     {"id":{"name":"fnt_sans","path":"fonts/fnt_sans/fnt_sans.yy",},},
     {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},},
     {"id":{"name":"obj_demo","path":"objects/obj_demo/obj_demo.yy",},},
+    {"id":{"name":"obj_gem","path":"objects/obj_gem/obj_gem.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
-    {"id":{"name":"rm_demo","path":"rooms/rm_demo/rm_demo.yy",},},
+    {"id":{"name":"rm_demo_0","path":"rooms/rm_demo_0/rm_demo_0.yy",},},
+    {"id":{"name":"rm_demo_1","path":"rooms/rm_demo_1/rm_demo_1.yy",},},
     {"id":{"name":"__Tweeny","path":"scripts/__Tweeny/__Tweeny.yy",},},
     {"id":{"name":"__TweenyConstants","path":"scripts/__TweenyConstants/__TweenyConstants.yy",},},
     {"id":{"name":"__TweenyDebug","path":"scripts/__TweenyDebug/__TweenyDebug.yy",},},
@@ -72,7 +74,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_demo","path":"rooms/rm_demo/rm_demo.yy",},},
+    {"roomId":{"name":"rm_demo_1","path":"rooms/rm_demo_1/rm_demo_1.yy",},},
+    {"roomId":{"name":"rm_demo_0","path":"rooms/rm_demo_0/rm_demo_0.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

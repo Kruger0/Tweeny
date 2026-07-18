@@ -1,7 +1,7 @@
 // feather ignore all
 /// @ignore
 function __TweenyTrace(msg, level){
-	if (level <= TWEENY_TRACE_LEVEL) {
+    if (level <= TWEENY_TRACE_LEVEL) {
         var _string = "[Localize]" + (level == TWEENY_TRACE.CRITICAL ? " \u26A0 " : " ") + msg;
         if (argument_count > 2) {
             var _count = argument_count - 2;

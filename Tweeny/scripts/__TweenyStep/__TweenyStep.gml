@@ -13,7 +13,7 @@ function __TweenyStep() constructor {
     __duration = 0;
     __ease = undefined;
     __from = undefined;
-	__fromExplicit = false;
+    __fromExplicit = false;
     __instance = undefined;
     __relative = false;
     __func = undefined;

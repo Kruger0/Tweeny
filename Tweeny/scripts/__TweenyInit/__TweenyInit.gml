@@ -7,7 +7,7 @@ function __TweenyInit() {
             dt: 1,
             tweens: [],
             timeSource: undefined,
-            defaultEase: TweenyEaseLinearOut,
+            defaultEase: TWEENY_DEFAULT_EASE,
             dbgView: pointer_null,
             dbgSections: {},
             dbgMode: false,
@@ -26,8 +26,8 @@ function __TweenyInit() {
                     var _tween = _tweens[i];
                     if (_tween.__dead) {
                         array_delete(_tweens, i, 1);
-						continue;
-					}
+                        continue;
+                    }
                     _tween.__Update();
                 }
             }, [], -1);
