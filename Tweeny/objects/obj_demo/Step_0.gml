@@ -19,6 +19,6 @@ if (keyboard_check_pressed(vk_f9)) {
 //    })
 //}
 
-if (mouse_check_button_pressed(mb_right)) {
+if (mouse_check_button(mb_right)) {
     instance_create_depth(mouse_x, mouse_y, gems--, obj_gem)
 }
