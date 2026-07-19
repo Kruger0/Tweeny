@@ -49,31 +49,31 @@ gems = 0
 //tt.String(text, "str", "But cannot read that", 3)
 //tt.Interval(1)
 
-//Cube = function(x, y, ang, col) constructor {
-//    self.x = x;
-//    self.y = y;
-//    self.xScl = 1;
-//    self.yScl = 1;
-//    self.ang = ang;
-//    self.col = col;
-//    self.a = 1;
+Cube = function(x, y, ang, col) constructor {
+    self.x = x;
+    self.y = y;
+    self.xScl = 1;
+    self.yScl = 1;
+    self.ang = ang;
+    self.col = col;
+    self.a = 1;
     
-//    Draw = function() {
-//        draw_sprite_ext(spr_cube, 0, x, y, xScl, yScl, ang, col, a);
-//    }
-//}
+    Draw = function() {
+        draw_sprite_ext(spr_cube, 0, x, y, xScl, yScl, ang, col, a);
+    }
+}
 
 
-//cube1 = new Cube(450, 250, 0, c_white);
-//with (cube1) {
-//    t = new Tweeny();
-//    t.SetEaseFunc(TweenyEaseBounceOut);
-//    t.SetLoops();
-//    t.Variable(self, "x", 100, 1).Relative();
-//    t.Variable(self, "y", 100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
-//    t.Variable(self, "x", -100, 1).Relative();
-//    t.Variable(self, "y", -100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
-//}
+cube1 = new Cube(450, 250, 0, c_white);
+with (cube1) {
+    t = new Tweeny();
+    t.SetEaseFunc(TweenyEaseBounceOut);
+    t.SetLoops();
+    t.Variable(self, "x", 100, 1).Relative();
+    t.Variable(self, "y", 100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
+    t.Variable(self, "x", -100, 1).Relative();
+    t.Variable(self, "y", -100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
+}
 
 //cube2 = new Cube(450, 150, 0, c_white);
 //with (cube2) {

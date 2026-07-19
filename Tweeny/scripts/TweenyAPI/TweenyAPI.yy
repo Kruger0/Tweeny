@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"__Tweeny",
+  "%Name":"TweenyAPI",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__Tweeny",
+  "name":"TweenyAPI",
   "parent":{
-    "name":"Private",
-    "path":"folders/Tweeny/Private.yy",
+    "name":"Public",
+    "path":"folders/Tweeny/Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
