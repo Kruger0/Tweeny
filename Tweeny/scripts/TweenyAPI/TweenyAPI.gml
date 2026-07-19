@@ -8,7 +8,7 @@ function Tweeny() constructor {
     __source = undefined;
     __steps = [];
     __current = 0;
-    __speed = 1.0;
+    __speedScale  = 1.0;
     __ease = undefined;
     __loopsTotal = 1;
     __loopsLeft = __loopsTotal;
@@ -51,16 +51,16 @@ function Tweeny() constructor {
         if (array_length(__steps) == 0) return;
         if (__current >= array_length(__steps)) return;
         var _slot = __steps[__current];
-        var _dt = (__data.dt / game_get_speed(gamespeed_fps)) * __speed;
-        __elapsed += _dt;
-        __totalElapsed += _dt;
+        var _delta = (__data.timeScale / game_get_speed(gamespeed_fps)) * __speedScale ;
+        __elapsed += _delta;
+        __totalElapsed += _delta;
         if (is_array(_slot)) {
             // Parallel
             var _done = true;
             for (var i = 0; i < array_length(_slot); i++) {
                 var _step = _slot[i];
                 if (!_step.__done) {
-                    __Execute(_step, _dt);
+                    __Execute(_step, _delta);
                     if (!_step.__done) _done = false;
                 }
             }
@@ -71,26 +71,26 @@ function Tweeny() constructor {
         } else {
             // Sequential
             var _wasDone = _slot.__done;
-            __Execute(_slot, _dt);
+            __Execute(_slot, _delta);
             if (!_wasDone && _slot.__done) {
                 __Trigger(__onStepFinishedCb);
                 __Advance();
             }
         }
     }
-    static __Execute = function(step, dt) {
+    static __Execute = function(step, delta) {
         static __data = __TweenyInit();
         if (step.__remaining > 0) {
-            step.__remaining -= dt;
+            step.__remaining -= delta;
             return;
         }
         var _ease = step.__ease ?? __ease ?? __data.defaultEase;
         with (step) {
             __from ??= struct_get(__instance ?? {}, __variable) ?? 0;
-            __elapsed += dt;
-            var _pos = clamp(__elapsed / __duration, 0, 1);
+            __elapsed += delta;
+            var _t = clamp(__elapsed / __duration, 0, 1);
             var _to = (__relative ? __from + __target : __target);
-            var _amt = is_callable(_ease) ? _ease(_pos) : animcurve_channel_evaluate(_ease, _pos);
+            var _amt = is_callable(_ease) ? _ease(_t) : animcurve_channel_evaluate(_ease, _t);
             var _result = __lerp(__from, _to, _amt);
             switch (__type) {
                 case __TWEENY_TYPE.VARIABLE:
@@ -245,13 +245,16 @@ function Tweeny() constructor {
         _step.__args = (is_array(args) ? args : [args]);
         return __Push(_step);
     }
-    
+    /// @desc Begins a parallel block. Steps added after this will run simultaneously until ParallelEnd() is called.
+    /// @return {Struct.Tweeny} The tween element.
     static ParallelBegin = function() {
         if (__parallel) __TweenyError("ParallelBegin() called without closing previous ParallelEnd()", true);
         __parallel = true;
         array_push(__steps, []);
         return self;
     }
+    /// @desc Ends a parallel block. Steps added after this will run sequentially again.
+    /// @return {Struct.Tweeny} The tween element.
     static ParallelEnd = function() {
         if (!__parallel) __TweenyError("ParallelEnd() called without a matching ParallelBegin()", true);
         __parallel = false;
@@ -260,12 +263,12 @@ function Tweeny() constructor {
     /// @desc Sets the playback speed scale of the tween.
     /// @param {Real} scale The speed multiplier.
     /// @return {Struct.Tweeny} The tween element.
-    static SetSpeed = function(scale) {
-        __speed = scale;
+    static SetSpeedScale = function(scale) {
+        __speedScale  = scale;
         return self;
     }
     /// @desc Sets the number of times the tween loops.
-    /// @param {Real} loops The number of loops. Defaults to -1 (infinite).
+    /// @param {Real} loops The number of loops. Defaults to 0 (infinite).
     /// @return {Struct.Tweeny} The tween element.
     static SetLoops = function(loops = 0) {
         __loopsTotal = max(0, loops);

@@ -16,5 +16,5 @@ function __TweenyDebug() {
     dbg_section_delete(__data.dbgSections[$ "general"]);
     __data.dbgSections[$ "general"] = dbg_section("General");
     
-        dbg_slider(ref_create(__data, "dt"), 0, 5, "Delta Time");
+        dbg_slider(ref_create(__data, "timeScale"), 0, 5, "Delta Time");
 }

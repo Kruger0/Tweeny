@@ -1,8 +1,8 @@
 // feather ignore all
 
-function TweenySetDeltatime(dt) {
+function TweenySetTimeScale(scale) {
     static __data = __TweenyInit();
-    __data.dt = dt;
+    __data.timeScale = scale;
 }
 
 function TweenyPauseAll() {
