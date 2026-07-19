@@ -5,6 +5,6 @@ xOff = 0;
 xScl = 1;
 yScl = 1;
 ang = 0;
-tween = new Tweeny(id); 
+tween = new Tweeny().Bind(id); 
 btnColor = #00CDF9;
 lblColor = #101010;
