@@ -114,6 +114,12 @@ function Tweeny() constructor {
                     method_call(__func, __args);
                     __done = true;
                 } break;
+
+                case __TWEENY_TYPE.AWAIT: {
+                    if (method_call(__func, __args)) {
+                        __done = true;
+                    }
+                } break;
                 
                 case __TWEENY_TYPE.METHOD: {
                     method_call(__func, [_result]);
@@ -162,7 +168,7 @@ function Tweeny() constructor {
     }
     static __Skip = function(step) {
         with (step) {
-            if (__type == __TWEENY_TYPE.INTERVAL || __type == __TWEENY_TYPE.CALLBACK) {
+            if (__type == __TWEENY_TYPE.INTERVAL || __type == __TWEENY_TYPE.CALLBACK || __type == __TWEENY_TYPE.AWAIT) {
                 __done = true;
                 return;
             }
@@ -247,6 +253,16 @@ function Tweeny() constructor {
     /// @return {Struct.Step} The step element.
     static Callback = function(func, args = []) {
         var _step = new __TweenyCallback();
+        _step.__func = func;
+        _step.__args = (is_array(args) ? args : [args]);
+        return __Push(_step);
+    }
+    /// @desc Pauses the sequence until a condition is met.
+    /// @param {Function} func The predicate that returns true when the condition is met.
+    /// @param {Array|Any} args Arguments to pass to the function. A non-array value is wrapped automatically.
+    /// @return {Struct.Step} The step element.
+    static Await = function(func, args = []) {
+        var _step = new __TweenyAwait();
         _step.__func = func;
         _step.__args = (is_array(args) ? args : [args]);
         return __Push(_step);

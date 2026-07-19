@@ -29,3 +29,9 @@ function __TweenyCallback() : __TweenyStep() constructor {
     __type = __TWEENY_TYPE.CALLBACK;
     __args = undefined;
 }
+
+/// @ignore
+function __TweenyAwait() : __TweenyStep() constructor {
+    __type = __TWEENY_TYPE.AWAIT;
+    __args = undefined;
+}

@@ -10,6 +10,7 @@ enum __TWEENY_TYPE {
     METHOD,
     INTERVAL,
     CALLBACK,
+    AWAIT,
 }
 
 enum TWEENY_TRACE {
