@@ -1,11 +1,11 @@
 // feather ignore all
 /// @desc Creates a tween element.
-/// @param {Id.Instance|Struct|Undefined} source The instance or struct to be tracked.
-function Tweeny(source = undefined) constructor {
+/// @return {Struct.Tweeny} The tween element.
+function Tweeny() constructor {
     
     #region Private
     static __data = __TweenyInit();
-    __source = is_struct(source) ? weak_ref_create(source) : source;
+    __source = undefined;
     __steps = [];
     __current = 0;
     __speed = 1.0;
@@ -328,6 +328,13 @@ function Tweeny(source = undefined) constructor {
     /// @desc Sets a callback function to be executed at the end of every step.
     static OnStepFinished = function(callback) {
         array_push(__onStepFinishedCb, callback);
+        return self;
+    }
+    /// @desc Binds the tween lifetime to an instance or struct. The tween will automatically stop if the bound target ceases to exist.
+    /// @param {Id.Instance|Struct} source The instance or struct to bind to.
+    /// @return {Struct.Tweeny} The tween element.
+    static Bind = function(source) {
+        __source = is_struct(source) ? weak_ref_create(source) : source;
         return self;
     }
     /// @desc Skips the current step.
