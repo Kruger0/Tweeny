@@ -10,8 +10,8 @@
   "name":"obj_demo",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Demo/Objects.yy",
+    "name":"Demo",
+    "path":"folders/Demo.yy",
   },
   "parentObjectId":null,
   "persistent":false,

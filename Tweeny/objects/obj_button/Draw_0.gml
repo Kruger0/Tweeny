@@ -1,5 +1,5 @@
 
-draw_set_font(fnt_sans);
+draw_set_font(fnt_demo);
 draw_set_valign(1);
 draw_set_halign(1);
 matrix_set(matrix_world, matrix_build(x, y, 0, 0, 0, ang, xScl, yScl, 1))

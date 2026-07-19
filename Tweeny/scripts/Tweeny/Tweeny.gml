@@ -8,7 +8,8 @@ function Tweeny() constructor {
     __source = undefined;
     __steps = [];
     __current = 0;
-    __speedScale  = 1.0;
+    __speedScale = 1.0;
+    __speedAbsolute = false;
     __ease = undefined;
     __loopsTotal = 1;
     __loopsLeft = __loopsTotal;
@@ -47,11 +48,16 @@ function Tweeny() constructor {
         }
         if (!__paused) __Process();
     }
+    static __Delta = function() {
+    return __speedAbsolute
+        ? (__speedScale / game_get_speed(gamespeed_fps))
+        : (__data.timeScale / game_get_speed(gamespeed_fps)) * __speedScale;
+    }
     static __Process = function() {
         if (array_length(__steps) == 0) return;
         if (__current >= array_length(__steps)) return;
         var _slot = __steps[__current];
-        var _delta = (__data.timeScale / game_get_speed(gamespeed_fps)) * __speedScale ;
+        var _delta = __Delta();
         __elapsed += _delta;
         __totalElapsed += _delta;
         if (is_array(_slot)) {
@@ -262,9 +268,11 @@ function Tweeny() constructor {
     }
     /// @desc Sets the playback speed scale of the tween.
     /// @param {Real} scale The speed multiplier.
+    /// @param {Bool} absolute If true, ignores the global time scale and uses only the provided value.
     /// @return {Struct.Tweeny} The tween element.
-    static SetSpeedScale = function(scale) {
-        __speedScale  = scale;
+    static SetSpeedScale = function(scale, absolute = false) {
+        __speedScale = scale;
+        __speedAbsolute = absolute;
         return self;
     }
     /// @desc Sets the number of times the tween loops.
@@ -284,51 +292,64 @@ function Tweeny() constructor {
         return self;
     }
     /// @desc Sets the easing function.
-    /// @param {Function} func The easing function..
+    /// @param {Function} func The easing function.
     /// @return {Struct.Tweeny} The tween element.
     static SetEaseFunc = function(func) {
         __ease = func;
         return self;
     }
     /// @desc Returns the total loop count of the tween element.
+    /// @return {Real} The total number of loops.
     static GetLoops = function() {
         return __loopsTotal;
     }
     /// @desc Returns the remaining loop count of the tween element.
+    /// @return {Real} The remaining number of loops.
     static GetLoopsLeft = function() {
         return __loopsLeft;
     }
-    /// @desc Returns the elapsed time of the current cycle
+    /// @desc Returns the elapsed time of the current cycle.
+    /// @return {Real} The elapsed time in seconds for the current cycle.
     static GetElapsedTime = function() {
         return __elapsed;
     }
-    /// @desc Returns the total elapsed time since the tween element
+    /// @desc Returns the total elapsed time since the tween element.
+    /// @return {Real} The total elapsed time in seconds since the tween started.
     static GetTotalElapsedTime = function() {
         return __totalElapsed;
     }
-    /// @desc Checks if the tween element is running
+    /// @desc Checks if the tween element is running.
+    /// @return {Bool} True if the tween is active and not paused.
     static IsRunning = function() {
         return !__paused && !__dead;
     }
-    /// @desc Checks if the tween element is paused
+    /// @desc Checks if the tween element is paused.
+    /// @return {Bool} True if the tween is paused.
     static IsPaused = function() {
         return __paused;
     }
     /// @desc Checks if the tween element is alive and being processed.
+    /// @return {Bool} True if the tween is alive and being processed.
     static IsValid = function() {
         return !__dead && array_contains(__data.tweens, self);
     }
     /// @desc Sets a callback function to be executed at the end of the last step.
+    /// @param {Function} callback The function to call when a tween completes.
+    /// @return {Struct.Tweeny} The tween element.
     static OnFinished = function(callback) {
         array_push(__onFinishedCb, callback);
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of a loop.
+    /// @param {Function} callback The function to call when a loop completes.
+    /// @return {Struct.Tweeny} The tween element.
     static OnLoopFinished = function(callback) {
-        array_push(__onLoopFinishedCb, callback); // TODO check if this is being called at the last loop
+        array_push(__onLoopFinishedCb, callback);
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of every step.
+    /// @param {Function} callback The function to call when a step completes.
+    /// @return {Struct.Tweeny} The tween element.
     static OnStepFinished = function(callback) {
         array_push(__onStepFinishedCb, callback);
         return self;
@@ -341,6 +362,7 @@ function Tweeny() constructor {
         return self;
     }
     /// @desc Skips the current step.
+    /// @return {Struct.Tweeny} The tween element.
     static Skip = function() {
         while (__current < array_length(__steps)) {
             var _slot = __steps[__current];
@@ -354,18 +376,22 @@ function Tweeny() constructor {
             __current++;
         }
         __dead = true;
+        return self;
     }
     /// @desc Pauses the tween element animation.
+    /// @return {Struct.Tweeny} The tween element.
     static Pause = function() {
         __paused = true;
         return self;
     }
     /// @desc Resumes the tween element animation.
+    /// @return {Struct.Tweeny} The tween element.
     static Play = function() {
         __paused = false;
         return self;
     }
     /// @desc Stops the tween element animation, reseting it to the initial step.
+    /// @return {Struct.Tweeny} The tween element.
     static Stop = function() {
         __paused = true;
         __totalElapsed = 0;
@@ -373,6 +399,7 @@ function Tweeny() constructor {
         return self;
     }
     /// @desc Clear the tween element from memory.
+    /// @return {Undefined}
     static Destroy = function() {
         __paused = true;
         __dead = true;

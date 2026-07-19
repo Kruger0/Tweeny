@@ -6,38 +6,33 @@ cursor_sprite = spr_cursor;
 
 gems = 0
 
-//points = {
-//    x : 16,
-//    y : 100,
-//    xScl : 1,
-//    yScl : 1,
-//    ang : 0,
-//    color : c_white,
-//    alpha : 1,
-//    value : 0,
+points = {
+    x : 16,
+    y : 100,
+    xScl : 1,
+    yScl : 1,
+    ang : 0,
+    color : c_white,
+    alpha : 1,
+    value : 0,
     
-//    draw : function() {
-//        draw_set_font(fnt_sans);
-//        var _str = $"Score: {value}"
-//        draw_set_valign(1)
-//        draw_text_transformed_color(x, y, _str, xScl, yScl, ang, color, color, color, color, alpha);
-//        draw_set_valign(0)
-//        draw_set_font(-1);
-//    }
-//}
+    draw : function() {
+        draw_set_font(fnt_demo);
+        var _str = $"Score: {value}"
+        draw_set_valign(1)
+        draw_text_transformed_color(x, y, _str, xScl, yScl, ang, color, color, color, color, alpha);
+        draw_set_valign(0)
+        draw_set_font(-1);
+    }
+}
 
-//tp = new Tweeny(id)
-//tp.SetLoops()
-//tp.Variable(points, "value", 100, 3).Relative().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT)
-//tp.Color(points, "color", c_yellow, 0)
-//tp.Variable(points, "xScl", 1.2, 0)
-//tp.Variable(points, "yScl", 1.2, 0)
-//tp.ParallelBegin()
-//tp.SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT)
-//tp.Variable(points, "xScl", 1, 1)
-//tp.Variable(points, "yScl", 1, 1)
-//tp.Color(points, "color", c_white, 1).SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT)
-//tp.ParallelEnd()
+tp = new Tweeny().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops();
+tp.Variable(points, "value", 100, 3).Relative();
+tp.ParallelBegin();
+tp.Variable(points, "xScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
+tp.Variable(points, "yScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
+tp.Color(points, "color", c_white, 1).From(c_yellow).SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT);
+tp.ParallelEnd();
 
 //text = {
 //    str: "Agora você lê"

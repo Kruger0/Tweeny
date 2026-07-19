@@ -1,12 +1,12 @@
 
-draw_set_font(fnt_sans);
+draw_set_font(fnt_demo);
 var _text = $"Tweeny v{__TWEENY_VERSION} | Demo Project";
 draw_text(16, 24, _text);
 //draw_text(650, 24, text.str);
 draw_text(16, 48, array_length(TweenyGetAll()));
 draw_set_font(-1);
 
-//points.draw();
+points.draw();
 //coin.Draw();
 
 cube1.Draw();
