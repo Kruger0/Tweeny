@@ -43,7 +43,7 @@ These are called on the return value of step methods:
 | Method | Description |
 |--------|-------------|
 | `SetSpeed(scale)` | Set playback speed multiplier |
-| `SetLoops([loops])` | Set loop count (-1 = infinite, 1 = default) |
+| `SetLoops([loops])` | Set loop count (0 = infinite, 1 = default) |
 | `SetEase(animCurve, [channel])` | Set global easing for all steps |
 | `Skip()` | Jump to the end immediately |
 | `Pause()` | Pause the tween |

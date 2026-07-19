@@ -119,8 +119,8 @@ function Tweeny(source = undefined) constructor {
     static __Advance = function() {
         __current++;
         if (__current >= array_length(__steps)) {
-            if (__loopsTotal == -1) {
-                __Trigger(__onLoopFinishedCb);
+            __Trigger(__onLoopFinishedCb);
+            if (__loopsTotal == 0) {
                 __Reset();
             } else {
                 __loopsLeft--;
@@ -128,7 +128,6 @@ function Tweeny(source = undefined) constructor {
                     __dead = true;
                     __Trigger(__onFinishedCb);
                 } else {
-                    __Trigger(__onLoopFinishedCb);
                     __Reset();
                 }
             }
@@ -268,8 +267,8 @@ function Tweeny(source = undefined) constructor {
     /// @desc Sets the number of times the tween loops.
     /// @param {Real} loops The number of loops. Defaults to -1 (infinite).
     /// @return {Struct.Tweeny} The tween element.
-    static SetLoops = function(loops = -1) {
-        __loopsTotal = (loops < 1 ? -1 : loops);
+    static SetLoops = function(loops = 0) {
+        __loopsTotal = max(0, loops);
         __loopsLeft = __loopsTotal;
         return self;
     }

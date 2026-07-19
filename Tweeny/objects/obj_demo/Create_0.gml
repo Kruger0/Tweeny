@@ -75,49 +75,50 @@ with (cube1) {
     t.Variable(self, "y", -100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
 }
 
-//cube2 = new Cube(450, 150, 0, c_white);
-//with (cube2) {
-//    t = new Tweeny();
-//    t.SetEaseFunc(TweenyEaseElasticOut);
-//    t.SetLoops();
-//    t.ParallelBegin()
-//    t.Variable(self, "x", 100, 1).Relative();
-//    t.Variable(self, "ang", 180, 1).Relative();
-//    t.ParallelEnd();
-//    t.ParallelBegin();
-//    t.Variable(self, "x", -100, 1).Relative();
-//    t.Variable(self, "ang", 180, 1).Relative();
-//    t.ParallelEnd();
-//}
+cube2 = new Cube(450, 150, 0, c_white);
+with (cube2) {
+    t = new Tweeny();
+    t.SetEaseFunc(TweenyEaseElasticOut);
+    t.SetLoops();
+    t.ParallelBegin()
+    t.Variable(self, "x", 100, 1).Relative();
+    t.Variable(self, "ang", 180, 1).Relative();
+    t.ParallelEnd();
+    t.ParallelBegin();
+    t.Variable(self, "x", -100, 1).Relative();
+    t.Variable(self, "ang", 180, 1).Relative();
+    t.ParallelEnd();
+}
 
-//cube3 = new Cube(450, 450, 0, c_white);
-//with (cube3) {
-//    t = new Tweeny();
-//    t.SetEaseFunc(TweenyEaseElasticOut);
-//    t.SetLoops();
-//    t.ParallelBegin()
-//    t.Variable(self, "xScl", 0.5, 1);
-//    t.Variable(self, "yScl", 1.5, 1);
-//    t.Color(self, "col", c_red, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);
-//    t.ParallelEnd();
-//    t.ParallelBegin();
-//    t.Variable(self, "xScl", 1.5, 1);
-//    t.Variable(self, "yScl", 0.5, 1);
-//    t.Variable(self, "x", 100, 1).Relative();
-//    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
-//    t.ParallelEnd();
-//    t.ParallelBegin();
-//    t.Variable(self, "xScl", 0.5, 1);
-//    t.Variable(self, "yScl", 1.5, 1);
-//    t.Color(self, "col", c_blue, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
-//    t.ParallelEnd();
-//    t.ParallelBegin();
-//    t.Variable(self, "xScl", 1.5, 1);
-//    t.Variable(self, "yScl", 0.5, 1);
-//    t.Variable(self, "x", -100, 1).Relative();
-//    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
-//    t.ParallelEnd()
-//}
+cube3 = new Cube(450, 450, 0, c_white);
+with (cube3) {
+    t = new Tweeny();
+    t.SetEaseFunc(TweenyEaseElasticOut);
+    t.SetLoops();
+    t.ParallelBegin()
+    t.Variable(self, "xScl", 0.5, 1);
+    t.Variable(self, "yScl", 1.5, 1);
+    t.Color(self, "col", c_red, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);
+    t.ParallelEnd();
+    t.ParallelBegin();
+    t.Variable(self, "xScl", 1.5, 1);
+    t.Variable(self, "yScl", 0.5, 1);
+    t.Variable(self, "x", 100, 1).Relative();
+    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.ParallelEnd();
+    t.ParallelBegin();
+    t.Variable(self, "xScl", 0.5, 1);
+    t.Variable(self, "yScl", 1.5, 1);
+    t.Color(self, "col", c_blue, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.ParallelEnd();
+    t.ParallelBegin();
+    t.Variable(self, "xScl", 1.5, 1);
+    t.Variable(self, "yScl", 0.5, 1);
+    t.Variable(self, "x", -100, 1).Relative();
+    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.ParallelEnd()
+}
+
 
 //coin = {
 //    x: 750,

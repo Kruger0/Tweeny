@@ -9,9 +9,9 @@ draw_set_font(-1);
 //points.draw();
 //coin.Draw();
 
-//cube1.Draw();
-//cube2.Draw();
-//cube3.Draw();
+cube1.Draw();
+cube2.Draw();
+cube3.Draw();
 
 TweenyDrawEase(64, 128, 256, 192, TweenyEaseBounceOut, 256)
 TweenyDrawEase(512, 128, 256, 192, TweenyEaseElasticOut, 256)
