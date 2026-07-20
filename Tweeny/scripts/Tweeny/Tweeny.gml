@@ -19,9 +19,9 @@ function Tweeny() constructor {
     __dead = false;
     __elapsed = 0;
     __totalElapsed = 0;
-    __onFinishedCb = [];
-    __onLoopFinishedCb = [];
-    __onStepFinishedCb = [];
+    __onFinished = undefined;
+    __onLoopFinished = undefined;
+    __onStepFinished = undefined;
     array_push(__data.tweens, self);
     
     static __Build = function(type, instance, variable, target, duration) {
@@ -72,7 +72,7 @@ function Tweeny() constructor {
                 }
             }
             if (_done) {
-                __Trigger(__onStepFinishedCb, __stepIndex);
+                if (!is_undefined(__onStepFinished)) method_call(__onStepFinished, [__stepIndex]);
                 __Advance();
             }
         } else {
@@ -80,7 +80,7 @@ function Tweeny() constructor {
             var _wasDone = _slot.__done;
             __Execute(_slot, _delta);
             if (!_wasDone && _slot.__done) {
-                __Trigger(__onStepFinishedCb, __stepIndex);
+                if (!is_undefined(__onStepFinished)) method_call(__onStepFinished, [__stepIndex]);
                 __Advance();
             }
         }
@@ -133,14 +133,14 @@ function Tweeny() constructor {
         __stepIndex++;
         if (__stepIndex >= array_length(__steps)) {
             __loopIndex++;
-            __Trigger(__onLoopFinishedCb, __loopIndex);
+            if (!is_undefined(__onLoopFinished)) method_call(__onLoopFinished, [__loopIndex]);
             if (__loopsTotal == 0) {
                 __Reset();
             } else {
                 __loopsLeft--;
                 if (__loopsLeft <= 0) {
                     __dead = true;
-                    __Trigger(__onFinishedCb);
+                    if (!is_undefined(__onFinished)) method_call(__onFinished);
                 } else {
                     __Reset();
                 }
@@ -149,7 +149,7 @@ function Tweeny() constructor {
     }
     static __Reset = function() {
         __stepIndex = 0;
-    __loopIndex = 0;
+        __loopIndex = 0;
         __elapsed = 0;
         for (var i = 0; i < array_length(__steps); i++) {
             var _slot = __steps[i];
@@ -179,15 +179,6 @@ function Tweeny() constructor {
             var _to = (__relative ? __from + __target : __target);
             __instance[$ __variable] = _to;
             __done = true;
-        }
-    }
-    static __Trigger = function(array) {
-        var _args = [];
-        for (var _i = 1; _i < argument_count; _i++) {
-            array_push(_args, argument[_i]);
-        }
-        for (var i = 0; i < array_length(array); i++) {
-            method_call(array[i], _args);
         }
     }
     #endregion
@@ -343,12 +334,12 @@ function Tweeny() constructor {
     static GetLoopIndex = function() {
         return __loopIndex;
     }
-    /// @desc Returns the elapsed time of the current cycle.
-    /// @return {Real} The elapsed time in seconds for the current cycle.
+    /// @desc Returns the elapsed time of the current loop.
+    /// @return {Real} The elapsed time in seconds for the current step.
     static GetElapsedTime = function() { 
         return __elapsed;
     }
-    /// @desc Returns the total elapsed time since the tween element.
+    /// @desc Returns the total elapsed time since the tween started.
     /// @return {Real} The total elapsed time in seconds since the tween started.
     static GetTotalElapsedTime = function() {
         return __totalElapsed;
@@ -372,24 +363,24 @@ function Tweeny() constructor {
     
     #region Triggers
     /// @desc Sets a callback function to be executed at the end of the last step.
-    /// @param {Function} callback The function to call when a tween completes.
+    /// @param {Function} func The function to call when a tween completes.
     /// @return {Struct.Tweeny} The tween element.
-    static OnFinished = function(callback) {
-        array_push(__onFinishedCb, callback);
+    static OnFinished = function(func) {
+        __onFinished = func;
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of a loop.
-    /// @param {Function} callback The function to call when a loop completes.
+    /// @param {Function} func The function to call when a loop completes.
     /// @return {Struct.Tweeny} The tween element.
-    static OnLoopFinished = function(callback) {
-        array_push(__onLoopFinishedCb, callback);
+    static OnLoopFinished = function(func) {
+        __onLoopFinished = func;
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of every step.
-    /// @param {Function} callback The function to call when a step completes.
+    /// @param {Function} func The function to call when a step completes.
     /// @return {Struct.Tweeny} The tween element.
-    static OnStepFinished = function(callback) {
-        array_push(__onStepFinishedCb, callback);
+    static OnStepFinished = function(func) {
+        __onStepFinished = func;
         return self;
     }
     #endregion
