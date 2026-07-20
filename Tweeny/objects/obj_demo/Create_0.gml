@@ -26,7 +26,7 @@ points = {
     }
 }
 
-tp = new Tweeny().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops();
+tp = new Tweeny().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops(4);
 tp.Variable(points, "value", 100, 3).Relative();
 tp.ParallelBegin();
 tp.Variable(points, "xScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
@@ -66,6 +66,10 @@ with (cube1) {
     t.SetLoops();
     t.Variable(self, "x", 100, 1).Relative();
     t.Variable(self, "y", 100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
+    t.Await(function() {
+        show_debug_message("awayting")
+        return keyboard_check_pressed(vk_enter)
+    })
     t.Variable(self, "x", -100, 1).Relative();
     t.Variable(self, "y", -100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
 }
