@@ -2,6 +2,10 @@
 ---
 ## Tweens
 
+### Steps
+
+### Loops
+
 ## Eases
 
 ### Curves
@@ -19,3 +23,5 @@
 ### String
 
 ### Method
+
+### Await
