@@ -119,28 +119,28 @@ with (cube3) {
 }
 
 
-//coin = {
-//    x: 750,
-//    y: 192,
-//    xScl: 1,
-//    yScl: 1,
-//    rot: 0,
-//    col: c_white,
-//    a: 1,
-//    Draw: function() {
-//        draw_sprite_ext(spr_coin, 0, x, y, xScl, yScl, rot, col, a);
-//    }
-//}
+coin = {
+    x: 750,
+    y: 192,
+    xScl: 1,
+    yScl: 1,
+    rot: 0,
+    col: c_white,
+    a: 1,
+    Draw: function() {
+        draw_sprite_ext(spr_coin, 0, x, y, xScl, yScl, rot, col, a);
+    }
+}
 
-//tc = new Tweeny(id).SetLoops().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT);
-//tc.ParallelBegin();
-//tc.Angle(coin, "rot", 180, 1).Relative()
-//tc.Variable(coin, "a", 0, 1)
-//tc.Variable(coin, "xScl", 0, 1)
-//tc.Variable(coin, "yScl", 0, 1)
-//tc.ParallelEnd()
-//tc.ParallelBegin()
-//tc.Variable(coin, "a", 1, 0.5)
-//tc.Variable(coin, "xScl", 1, 1).SetEaseFunc(TweenyEaseElasticOut);
-//tc.Variable(coin, "yScl", 1, 1).SetEaseFunc(TweenyEaseElasticOut);
-//tc.ParallelEnd()
+tc = new Tweeny().SetLoops().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT);
+tc.ParallelBegin();
+tc.Angle(coin, "rot", 180, 1).Relative()
+tc.Variable(coin, "a", 0, 1)
+tc.Variable(coin, "xScl", 0, 1)
+tc.Variable(coin, "yScl", 0, 1)
+tc.ParallelEnd()
+tc.ParallelBegin()
+tc.Variable(coin, "a", 1, 0.5)
+tc.Variable(coin, "xScl", 1, 1).SetEaseFunc(TweenyEaseElasticOut);
+tc.Variable(coin, "yScl", 1, 1).SetEaseFunc(TweenyEaseElasticOut);
+tc.ParallelEnd()

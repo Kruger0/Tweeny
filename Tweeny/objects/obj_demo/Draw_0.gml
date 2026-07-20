@@ -7,7 +7,7 @@ draw_text(16, 48, array_length(TweenyGetAll()));
 draw_set_font(-1);
 
 points.draw();
-//coin.Draw();
+coin.Draw();
 
 cube1.Draw();
 cube2.Draw();

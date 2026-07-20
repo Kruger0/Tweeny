@@ -248,22 +248,22 @@ function Tweeny() constructor {
     }
     /// @desc Adds a callback function to be called when this step is reached.
     /// @param {Function} func The function to call.
-    /// @param {Array|Any} args Arguments to pass to the function. A non-array value is wrapped automatically.
+    /// @param {Array} args An array of arguments to pass to the function.
     /// @return {Struct.Step} The step element.
     static Callback = function(func, args = []) {
         var _step = new __TweenyCallback();
         _step.__func = func;
-        _step.__args = (is_array(args) ? args : [args]);
+        _step.__args = args;
         return __Push(_step);
     }
     /// @desc Pauses the sequence until a condition is met.
     /// @param {Function} func The predicate that returns true when the condition is met.
-    /// @param {Array|Any} args Arguments to pass to the function. A non-array value is wrapped automatically.
+    /// @param {Array} args An array of arguments to pass to the function.
     /// @return {Struct.Step} The step element.
     static Await = function(func, args = []) {
         var _step = new __TweenyAwait();
         _step.__func = func;
-        _step.__args = (is_array(args) ? args : [args]);
+        _step.__args = args;
         return __Push(_step);
     }
     /// @desc Begins a parallel block. Steps added after this will run simultaneously until ParallelEnd() is called.
@@ -370,14 +370,14 @@ function Tweeny() constructor {
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of a loop.
-    /// @param {Function} func The function to call when a loop completes.
+    /// @param {Function} func The function to call when a loop completes, receiving the loop index as an argument.
     /// @return {Struct.Tweeny} The tween element.
     static OnLoopFinished = function(func) {
         __onLoopFinished = func;
         return self;
     }
     /// @desc Sets a callback function to be executed at the end of every step.
-    /// @param {Function} func The function to call when a step completes.
+    /// @param {Function} func The function to call when a step completes, receiving the step index as an argument.
     /// @return {Struct.Tweeny} The tween element.
     static OnStepFinished = function(func) {
         __onStepFinished = func;
