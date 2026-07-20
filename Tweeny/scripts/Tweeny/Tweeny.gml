@@ -7,12 +7,13 @@ function Tweeny() constructor {
     static __data = __TweenyInit();
     __source = undefined;
     __steps = [];
-    __current = 0;
+    __stepIndex = 0;
     __speedScale = 1.0;
     __speedAbsolute = false;
     __ease = undefined;
     __loopsTotal = 1;
     __loopsLeft = __loopsTotal;
+    __loopIndex = 0;
     __paused = false;
     __parallel = false;
     __dead = false;
@@ -55,8 +56,8 @@ function Tweeny() constructor {
     }
     static __Process = function() {
         if (array_length(__steps) == 0) return;
-        if (__current >= array_length(__steps)) return;
-        var _slot = __steps[__current];
+        if (__stepIndex >= array_length(__steps)) return;
+        var _slot = __steps[__stepIndex];
         var _delta = __Delta();
         __elapsed += _delta;
         __totalElapsed += _delta;
@@ -71,7 +72,7 @@ function Tweeny() constructor {
                 }
             }
             if (_done) {
-                __Trigger(__onStepFinishedCb);
+                __Trigger(__onStepFinishedCb, __stepIndex);
                 __Advance();
             }
         } else {
@@ -79,7 +80,7 @@ function Tweeny() constructor {
             var _wasDone = _slot.__done;
             __Execute(_slot, _delta);
             if (!_wasDone && _slot.__done) {
-                __Trigger(__onStepFinishedCb);
+                __Trigger(__onStepFinishedCb, __stepIndex);
                 __Advance();
             }
         }
@@ -129,9 +130,10 @@ function Tweeny() constructor {
         }
     }
     static __Advance = function() {
-        __current++;
-        if (__current >= array_length(__steps)) {
-            __Trigger(__onLoopFinishedCb);
+        __stepIndex++;
+        if (__stepIndex >= array_length(__steps)) {
+            __loopIndex++;
+            __Trigger(__onLoopFinishedCb, __loopIndex);
             if (__loopsTotal == 0) {
                 __Reset();
             } else {
@@ -146,7 +148,8 @@ function Tweeny() constructor {
         }
     }
     static __Reset = function() {
-        __current = 0;
+        __stepIndex = 0;
+    __loopIndex = 0;
         __elapsed = 0;
         for (var i = 0; i < array_length(__steps); i++) {
             var _slot = __steps[i];
@@ -179,12 +182,17 @@ function Tweeny() constructor {
         }
     }
     static __Trigger = function(array) {
+        var _args = [];
+        for (var _i = 1; _i < argument_count; _i++) {
+            array_push(_args, argument[_i]);
+        }
         for (var i = 0; i < array_length(array); i++) {
-            method_call(array[i])
+            method_call(array[i], _args);
         }
     }
     #endregion
     
+    #region Steps
     /// @desc Tweens a numeric variable on an instance or struct.
     /// @param {Id.Instance|Struct} instance The instance or struct to target.
     /// @param {String} variable The variable name to tween.
@@ -247,7 +255,7 @@ function Tweeny() constructor {
         _step.__duration = duration;
         return __Push(_step);
     }
-    /// @desc Adds a callback to be called when this step is reached.
+    /// @desc Adds a callback function to be called when this step is reached.
     /// @param {Function} func The function to call.
     /// @param {Array|Any} args Arguments to pass to the function. A non-array value is wrapped automatically.
     /// @return {Struct.Step} The step element.
@@ -269,6 +277,9 @@ function Tweeny() constructor {
     }
     /// @desc Begins a parallel block. Steps added after this will run simultaneously until ParallelEnd() is called.
     /// @return {Struct.Tweeny} The tween element.
+    #endregion
+    
+    #region Modifiers
     static ParallelBegin = function() {
         if (__parallel) __TweenyError("ParallelBegin() called without closing previous ParallelEnd()", true);
         __parallel = true;
@@ -316,7 +327,10 @@ function Tweeny() constructor {
     }
     /// @desc Returns the total loop count of the tween element.
     /// @return {Real} The total number of loops.
-    static GetLoops = function() {
+    #endregion
+    
+    #region Queries
+    static GetLoopsTotal = function() {
         return __loopsTotal;
     }
     /// @desc Returns the remaining loop count of the tween element.
@@ -324,9 +338,14 @@ function Tweeny() constructor {
     static GetLoopsLeft = function() {
         return __loopsLeft;
     }
+    /// @desc Returns the current loop index (1-based) of the tween element.
+    /// @return {Real} The current loop index.
+    static GetLoopIndex = function() {
+        return __loopIndex;
+    }
     /// @desc Returns the elapsed time of the current cycle.
     /// @return {Real} The elapsed time in seconds for the current cycle.
-    static GetElapsedTime = function() {
+    static GetElapsedTime = function() { 
         return __elapsed;
     }
     /// @desc Returns the total elapsed time since the tween element.
@@ -349,6 +368,9 @@ function Tweeny() constructor {
     static IsValid = function() {
         return !__dead && array_contains(__data.tweens, self);
     }
+    #endregion
+    
+    #region Triggers
     /// @desc Sets a callback function to be executed at the end of the last step.
     /// @param {Function} callback The function to call when a tween completes.
     /// @return {Struct.Tweeny} The tween element.
@@ -370,18 +392,14 @@ function Tweeny() constructor {
         array_push(__onStepFinishedCb, callback);
         return self;
     }
-    /// @desc Binds the tween lifetime to an instance or struct. The tween will automatically stop if the bound target ceases to exist.
-    /// @param {Id.Instance|Struct} source The instance or struct to bind to.
-    /// @return {Struct.Tweeny} The tween element.
-    static Bind = function(source) {
-        __source = is_struct(source) ? weak_ref_create(source) : source;
-        return self;
-    }
+    #endregion
+    
+    #region Playback
     /// @desc Skips the current step.
     /// @return {Struct.Tweeny} The tween element.
     static Skip = function() {
-        while (__current < array_length(__steps)) {
-            var _slot = __steps[__current];
+        while (__stepIndex < array_length(__steps)) {
+            var _slot = __steps[__stepIndex];
             if (is_array(_slot)) {
                 for (var i = 0; i < array_length(_slot); i++) {
                     __Skip(_slot[i]);
@@ -389,7 +407,7 @@ function Tweeny() constructor {
             } else {
                 __Skip(_slot);
             }
-            __current++;
+            __stepIndex++;
         }
         __dead = true;
         return self;
@@ -414,10 +432,21 @@ function Tweeny() constructor {
         __Reset();
         return self;
     }
+    #endregion
+    
+    #region Memory
+    /// @desc Binds the tween lifetime to an instance or struct.
+    /// @param {Id.Instance|Struct} source The instance or struct to bind to.
+    /// @return {Struct.Tweeny} The tween element.
+    static Bind = function(source) {
+        __source = is_struct(source) ? weak_ref_create(source) : source;
+        return self;
+    }
     /// @desc Clear the tween element from memory.
     /// @return {Undefined}
     static Destroy = function() {
         __paused = true;
         __dead = true;
     }
+    #endregion
 }
