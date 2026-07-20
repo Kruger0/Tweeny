@@ -67,7 +67,7 @@ with (cube1) {
     t.Variable(self, "x", 100, 1).Relative();
     t.Variable(self, "y", 100, 1).Relative().SetEaseFunc(TweenyEaseElasticOut);
     t.Await(function() {
-        show_debug_message("awayting")
+        show_debug_message("Press ENTER to continue")
         return keyboard_check_pressed(vk_enter)
     })
     t.Variable(self, "x", -100, 1).Relative();
