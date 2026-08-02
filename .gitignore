@@ -63,7 +63,7 @@ Temporary Items
 *.old
 
 # GMRT build directory
-Build
+build
 
 # Docs
 docs/node_modules/
