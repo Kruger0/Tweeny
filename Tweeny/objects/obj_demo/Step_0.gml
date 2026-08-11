@@ -15,3 +15,4 @@ if (_delta != 0) {
 
 if (keyboard_check_pressed(vk_space)) t.Skip()
 if (keyboard_check_pressed(vk_enter)) t.Finish()
+if (keyboard_check_pressed(vk_backspace)) TweenyFinishAll()
