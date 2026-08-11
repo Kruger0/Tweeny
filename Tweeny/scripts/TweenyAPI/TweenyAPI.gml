@@ -1,10 +1,11 @@
 // feather ignore all
 /// @desc Creates a tween element.
 /// @return {Struct.Tweeny} The tween element.
-function Tweeny() constructor {
+function Tweeny(uid = "") constructor {
     
     #region Private
     static __data = __TweenyInit();
+    __uid = uid;
     __source = undefined;
     __steps = [];
     __stepIndex = 0;
@@ -389,18 +390,17 @@ function Tweeny() constructor {
     /// @desc Skips the current step.
     /// @return {Struct.Tweeny} The tween element.
     static Skip = function() {
-        while (__stepIndex < array_length(__steps)) {
-            var _slot = __steps[__stepIndex];
-            if (is_array(_slot)) {
-                for (var i = 0; i < array_length(_slot); i++) {
-                    __Skip(_slot[i]);
-                }
-            } else {
-                __Skip(_slot);
+        if (__stepIndex >= array_length(__steps)) return self;
+        var _slot = __steps[__stepIndex];
+        if (is_array(_slot)) {
+            for (var i = 0; i < array_length(_slot); i++) {
+                __Skip(_slot[i]);
             }
-            __stepIndex++;
+        } else {
+            __Skip(_slot);
         }
-        __dead = true;
+        if (!is_undefined(__onStepFinished)) method_call(__onStepFinished, [__stepIndex]);
+        __Advance();
         return self;
     }
     /// @desc Pauses the tween element animation.
@@ -413,6 +413,27 @@ function Tweeny() constructor {
     /// @return {Struct.Tweeny} The tween element.
     static Play = function() {
         __paused = false;
+        return self;
+    }
+    /// @desc Skips all the remaining steps.
+    /// @return {Struct.Tweeny} The tween element.
+    static Finish = function() {
+        while (__stepIndex < array_length(__steps)) {
+            var _slot = __steps[__stepIndex];
+            if (is_array(_slot)) {
+                for (var i = 0; i < array_length(_slot); i++) {
+                    __Skip(_slot[i]);
+                }
+            } else {
+                __Skip(_slot);
+            }
+            if (!is_undefined(__onStepFinished)) method_call(__onStepFinished, [__stepIndex]);
+            __stepIndex++;
+        }
+        __loopIndex++;
+        if (!is_undefined(__onLoopFinished)) method_call(__onLoopFinished, [__loopIndex]);
+        __dead = true;
+        if (!is_undefined(__onFinished)) method_call(__onFinished);
         return self;
     }
     /// @desc Stops the tween element animation, reseting it to the initial step.
