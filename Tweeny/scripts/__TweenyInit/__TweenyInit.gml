@@ -13,7 +13,7 @@ function __TweenyInit() {
             dbgMode: false,
         }
         if (GM_build_type == "run" && debug_mode) {
-            global.__Tweeny = __data;
+            global[$ "__Tweeny"] ??= __data;
         }
         __TweenyDebug();
     }
