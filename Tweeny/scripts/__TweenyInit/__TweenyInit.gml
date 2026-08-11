@@ -18,7 +18,7 @@ function __TweenyInit() {
         __TweenyDebug();
     }
     with (__data) {
-        if (!time_source_exists(timeSource)) {
+        if (is_undefined(timeSource) || !time_source_exists(timeSource)) {
             timeSource = time_source_create(time_source_game, 1, time_source_units_frames, function() {
                 var _data = __TweenyInit();
                 var _tweens = _data.tweens;
