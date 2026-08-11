@@ -1,5 +1,6 @@
 // feather ignore all
 /// @desc Creates a tween element.
+/// @param {String} uid An optional, unique identifier used to look up the tween with TweenyGet(). Defaults to "".
 /// @return {Struct.Tweeny} The tween element.
 function Tweeny(uid = "") constructor {
     
@@ -324,6 +325,11 @@ function Tweeny(uid = "") constructor {
     #endregion
     
     #region Queries
+    /// @desc Returns the tween element unique identifier.
+    /// @return {String} The tween element uid.
+    static GetUID = function() {
+        return __uid;
+    }
     /// @desc Returns the total loop count of the tween element.
     /// @return {Real} The total number of loops.
     static GetLoopsTotal = function() {
