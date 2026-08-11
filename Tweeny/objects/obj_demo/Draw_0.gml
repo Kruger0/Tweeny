@@ -8,5 +8,5 @@ gpu_set_tex_filter(false);
 draw_set_font(-1);
 
 
-TweenyDrawEase(64, 128, 256, 192, TweenyEaseBounceOut, 256)
-TweenyDrawEase(512, 128, 256, 192, TweenyEaseElasticOut, 256)
+TweenyDrawEase(64, 128, 256, 192, TweenyEaseBounceOut)
+TweenyDrawEase(512, 128, 256, 192, TweenyEaseElasticOut)

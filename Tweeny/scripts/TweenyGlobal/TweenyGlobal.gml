@@ -74,12 +74,14 @@ function TweenyDestroyAll() {
 }
 
 /// @desc Draws the given easing function as a graph.
-/// @param {Real} x/y The top-left position of the graph.
-/// @param {Real} w/h The width and height of the graph.
+/// @param {Real} x The top position of the graph.
+/// @param {Real} y The left position of the graph.
+/// @param {Real} w The width of the graph.
+/// @param {Real} h The height of the graph.
 /// @param {Function} f The easing function to draw.
-/// @param {Real} p The number of segments. Defaults to 64.
-/// @param {Real} l The line width. Defaults to 2.
-function TweenyDrawEase(x, y, w, h, f, p = 64, l = 2) {
+/// @param {Real} p The number of segments. Defaults to 128.
+/// @param {Real} l The line width. Defaults to 1.
+function TweenyDrawEase(x, y, w, h, f, p = 128, l = 1) {
     var _px = x;
     var _py = y + h;
     for (var i = 1; i <= p; i++) {
