@@ -21,7 +21,7 @@ points = {
     }
 }
 
-tp = new Tweeny().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops(4);
+tp = new Tweeny().Bind(id).SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops(4);
 tp.Variable(points, "value", 100, 3).Relative();
 tp.ParallelBegin();
 tp.Variable(points, "xScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
@@ -53,10 +53,9 @@ Cube = function(x, y, ang, col) constructor {
     }
 }
 
-
 cube1 = new Cube(450, 250, 0, c_white);
 with (cube1) {
-    t = new Tweeny();
+    t = new Tweeny().Bind(other.id);
     t.SetEaseFunc(TweenyEaseBounceOut);
     t.SetLoops();
     t.Variable(self, "x", 100, 1).Relative();
@@ -70,7 +69,7 @@ with (cube1) {
 
 cube2 = new Cube(450, 150, 0, c_white);
 with (cube2) {
-    t = new Tweeny();
+    t = new Tweeny().Bind(other.id);
     t.SetEaseFunc(TweenyEaseElasticOut);
     t.SetLoops();
     t.ParallelBegin()
@@ -85,7 +84,7 @@ with (cube2) {
 
 cube3 = new Cube(450, 450, 0, c_white);
 with (cube3) {
-    t = new Tweeny();
+    t = new Tweeny().Bind(other.id);
     t.SetEaseFunc(TweenyEaseElasticOut);
     t.SetLoops();
     t.ParallelBegin()
@@ -126,7 +125,7 @@ coin = {
     }
 }
 
-tc = new Tweeny().SetLoops().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT);
+tc = new Tweeny().SetLoops().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).Bind(id);
 tc.ParallelBegin();
 tc.Angle(coin, "rot", 180, 1).Relative()
 tc.Variable(coin, "a", 0, 1)
