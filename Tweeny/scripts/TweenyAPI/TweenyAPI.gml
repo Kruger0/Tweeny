@@ -136,7 +136,7 @@ function Tweeny(uid = "") constructor {
         if (__stepIndex >= array_length(__steps)) {
             __loopIndex++;
             if (!is_undefined(__onLoopFinished)) method_call(__onLoopFinished, [__loopIndex]);
-            if (__loopsTotal == 0) {
+            if (__loopsLeft < 0) {
                 __Reset();
             } else {
                 __loopsLeft--;
@@ -240,6 +240,7 @@ function Tweeny(uid = "") constructor {
         var _step = new __TweenyMethod();
         _step.__func = func;
         _step.__from = from;
+        _step.__fromExplicit = true;
         _step.__target = to;
         _step.__duration = duration;
         return __Push(_step);
@@ -304,7 +305,7 @@ function Tweeny(uid = "") constructor {
     /// @return {Struct.Tweeny} The tween element.
     static SetLoops = function(loops = 0) {
         __loopsTotal = max(0, loops);
-        __loopsLeft = __loopsTotal;
+        __loopsLeft = __loopsTotal == 0 ? -1 : __loopsTotal;
         return self;
     }
     /// @desc Sets the easing function using an Animation Curve asset.
@@ -453,6 +454,7 @@ function Tweeny(uid = "") constructor {
     static Stop = function() {
         __paused = true;
         __totalElapsed = 0;
+        __loopsLeft = __loopsTotal == 0 ? -1 : __loopsTotal;
         __Reset();
         return self;
     }
@@ -471,6 +473,7 @@ function Tweeny(uid = "") constructor {
     static Destroy = function() {
         __paused = true;
         __dead = true;
+        return undefined;
     }
     #endregion
 }
