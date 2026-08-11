@@ -394,6 +394,7 @@ function Tweeny(uid = "") constructor {
     /// @desc Skips the current step.
     /// @return {Struct.Tweeny} The tween element.
     static Skip = function() {
+        if (__dead) return self;
         if (__stepIndex >= array_length(__steps)) return self;
         var _slot = __steps[__stepIndex];
         if (is_array(_slot)) {
@@ -422,6 +423,7 @@ function Tweeny(uid = "") constructor {
     /// @desc Skips all the remaining steps.
     /// @return {Struct.Tweeny} The tween element.
     static Finish = function() {
+        if (__dead) return self;
         while (__stepIndex < array_length(__steps)) {
             var _slot = __steps[__stepIndex];
             if (is_array(_slot)) {
