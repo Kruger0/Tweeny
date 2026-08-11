@@ -134,10 +134,9 @@ function TweenyEaseElasticIn(t) {
     return t;
 }
 function TweenyEaseElasticOut(t) {
-    var c4 = (2 * pi) / 3;
     if (t == 0) return 0;
     if (t == 1) return 1;
-    return power(2, -10 * t) * sin((t * 10 - 0.75) * c4) + 1;
+    return power(2, -10 * t) * sin((t * 10 - 0.75) * __TWEENY_C4) + 1;
 }
 function TweenyEaseElasticInOut(t) {
         return t;
