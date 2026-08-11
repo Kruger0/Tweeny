@@ -4,7 +4,7 @@
 function Tweeny(uid = "") constructor {
     
     #region Private
-    static __data = __TweenyInit();
+    __data = __TweenyInit();
     __uid = uid;
     __source = undefined;
     __steps = [];
