@@ -33,6 +33,17 @@ function TweenyDestroyAll() {
     time_source_destroy(__data.timeSource);
 }
 
+function TweenyGet(uid) {
+    static __data = __TweenyInit();
+    var _tweens = __data.tweens;
+    for (var i = 0; i < array_length(_tweens); i++) {
+        var _tween = _tweens[i];
+        if (_tween.__uid == uid) {
+            return _tween;
+        };
+    }
+}
+
 function TweenyGetAll() {
     static __data = __TweenyInit();
     return __data.tweens;
