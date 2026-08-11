@@ -178,7 +178,11 @@ function Tweeny(uid = "") constructor {
             }
             __from ??= struct_get(__instance ?? {}, __variable) ?? 0;
             var _to = (__relative ? __from + __target : __target);
-            __instance[$ __variable] = _to;
+            if (__type == __TWEENY_TYPE.METHOD) {
+                method_call(__func, [_to]);
+            } else {
+                __instance[$ __variable] = _to;
+            }
             __done = true;
         }
     }
