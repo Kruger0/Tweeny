@@ -1,17 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_gem",
+  "%Name":"obj_demo_01",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_gem",
+  "name":"obj_demo_01",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Demo/01/Objects.yy",
+    "name":"01",
+    "path":"folders/Demo/01.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -31,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_gem",
-    "path":"sprites/spr_gem/spr_gem.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

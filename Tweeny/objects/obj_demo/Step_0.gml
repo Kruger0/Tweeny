@@ -1,25 +1,17 @@
 
+// Debug overlay
 if (keyboard_check_pressed(vk_f9)) {
     debug ^= 1;
     show_debug_overlay(debug);
 }
 
-//if (keyboard_check_pressed(vk_space)) {
-//    var _t = new Tweeny(id);
-//    _t.Variable(id, "value", 10, 1).Relative();
-//    _t.Variable(id, "value", -5, 1).Relative();
-//    _t.OnFinished(function() {
-//        show_debug_message("final")
-//    })
-//    _t.OnLoopFinished(function() {
-//        show_debug_message("loop")
-//    })
-//    _t.OnStepFinished(function() {
-//        show_debug_message("step")
-//    })
-//}
-
-if (mouse_check_button(mb_right)) {
-    instance_create_depth(mouse_x, mouse_y, gems--, obj_gem)
+// Room change
+var _delta = keyboard_check_pressed(ord("D")) - keyboard_check_pressed(ord("A"));
+if (_delta != 0) {
+    demo = clamp(demo + _delta, 1, 3);
+    room_goto(demo);
 }
 
+
+if (keyboard_check_pressed(vk_space)) t.Skip()
+if (keyboard_check_pressed(vk_enter)) t.Finish()
