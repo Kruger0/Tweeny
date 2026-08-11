@@ -46,7 +46,7 @@ function TweenyEaseCubicOut(t) {
     return t;
 }
 function TweenyEaseCubicInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseCubicOutIn(t) {
     return t;
@@ -59,7 +59,7 @@ function TweenyEaseQuartOut(t) {
     return t;
 }
 function TweenyEaseQuartInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseQuartOutIn(t) {
     return t;
@@ -72,7 +72,7 @@ function TweenyEaseQuintOut(t) {
     return t;
 }
 function TweenyEaseQuintInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseQuintOutIn(t) {
     return t;
@@ -85,7 +85,7 @@ function TweenyEaseExpoOut(t) {
     return t;
 }
 function TweenyEaseExpoInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseExpoOutIn(t) {
     return t;
@@ -98,7 +98,7 @@ function TweenyEaseCircOut(t) {
     return t;
 }
 function TweenyEaseCircInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseCircOutIn(t) {
     return t;
@@ -111,7 +111,7 @@ function TweenyEaseBackOut(t) {
     return t;
 }
 function TweenyEaseBackInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseBackOutIn(t) {
     return t;
@@ -124,7 +124,7 @@ function TweenyEaseSpringOut(t) {
     return t;
 }
 function TweenyEaseSpringInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseSpringOutIn(t) {
     return t;
@@ -139,7 +139,7 @@ function TweenyEaseElasticOut(t) {
     return power(2, -10 * t) * sin((t * 10 - 0.75) * __TWEENY_C4) + 1;
 }
 function TweenyEaseElasticInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseElasticOutIn(t) {
     return t;
@@ -165,7 +165,7 @@ function TweenyEaseBounceOut(t) {
     }
 }
 function TweenyEaseBounceInOut(t) {
-        return t;
+    return t;
 }
 function TweenyEaseBounceOutIn(t) {
     return t;
