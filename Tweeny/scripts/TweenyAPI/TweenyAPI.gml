@@ -271,11 +271,11 @@ function Tweeny(uid = "") constructor {
         _step.__args = args;
         return __Push(_step);
     }
-    /// @desc Begins a parallel block. Steps added after this will run simultaneously until ParallelEnd() is called.
-    /// @return {Struct.Tweeny} The tween element.
     #endregion
     
     #region Modifiers
+    /// @desc Begins a parallel block. Steps added after this will run simultaneously until ParallelEnd() is called.
+    /// @return {Struct.Tweeny} The tween element.
     static ParallelBegin = function() {
         if (__parallel) __TweenyError("ParallelBegin() called without closing previous ParallelEnd()", true);
         __parallel = true;
@@ -321,16 +321,16 @@ function Tweeny(uid = "") constructor {
         __ease = func;
         return self;
     }
-    /// @desc Returns the total loop count of the tween element.
-    /// @return {Real} The total number of loops.
     #endregion
     
     #region Queries
+    /// @desc Returns the total loop count of the tween element.
+    /// @return {Real} The total number of loops.
     static GetLoopsTotal = function() {
         return __loopsTotal;
     }
-    /// @desc Returns the remaining loop count of the tween element.
-    /// @return {Real} The remaining number of loops.
+    /// @desc Returns the remaining loop count of the tween element, or -1 for infinite loops.
+    /// @return {Real} The remaining number of loops, or -1 if the tween loops infinitely.
     static GetLoopsLeft = function() {
         return __loopsLeft;
     }
@@ -340,7 +340,7 @@ function Tweeny(uid = "") constructor {
         return __loopIndex;
     }
     /// @desc Returns the elapsed time of the current loop.
-    /// @return {Real} The elapsed time in seconds for the current step.
+    /// @return {Real} The elapsed time in seconds for the current loop.
     static GetElapsedTime = function() { 
         return __elapsed;
     }
@@ -367,21 +367,21 @@ function Tweeny(uid = "") constructor {
     #endregion
     
     #region Triggers
-    /// @desc Sets a callback function to be executed at the end of the last step.
+    /// @desc Sets a callback function to be executed when the tween finishes.
     /// @param {Function} func The function to call when a tween completes.
     /// @return {Struct.Tweeny} The tween element.
     static OnFinished = function(func) {
         __onFinished = func;
         return self;
     }
-    /// @desc Sets a callback function to be executed at the end of a loop.
+    /// @desc Sets a callback function to be executed when a loop finishes.
     /// @param {Function} func The function to call when a loop completes, receiving the loop index as an argument.
     /// @return {Struct.Tweeny} The tween element.
     static OnLoopFinished = function(func) {
         __onLoopFinished = func;
         return self;
     }
-    /// @desc Sets a callback function to be executed at the end of every step.
+    /// @desc Sets a callback function to be executed when a step finishes.
     /// @param {Function} func The function to call when a step completes, receiving the step index as an argument.
     /// @return {Struct.Tweeny} The tween element.
     static OnStepFinished = function(func) {
