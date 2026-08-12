@@ -1,6 +1,6 @@
 {
   "$GMAnimCurve":"",
-  "%Name":"__TweenyEaseExpo",
+  "%Name":"TweenyCurveExpo",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"In","colour":4294561024,"name":"In","points":[
         {"th0":-0.25,"th1":0.2,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
@@ -27,10 +27,10 @@
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
-  "name":"__TweenyEaseExpo",
+  "name":"TweenyCurveExpo",
   "parent":{
     "name":"Curves",
-    "path":"folders/Tweeny/Private/Curves.yy",
+    "path":"folders/Tweeny/Curves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

@@ -33,7 +33,7 @@ tp.ParallelEnd();
 //    str: "Agora você lê"
 //}
 
-//tt = new Tweeny(id).SetLoops().SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_IN_OUT)
+//tt = new Tweeny(id).SetLoops().SetEaseCurve(TWEENY_CURVE_SINE, TWEENY_CHANNEL_IN_OUT)
 //tt.String(text, "str", "You can read this", 3)
 //tt.Interval(1)
 //tt.String(text, "str", "But cannot read that", 3)
@@ -55,7 +55,7 @@ Cube = function(x, y, ang, col) constructor {
 
 cube1 = new Cube(450, 250, 0, c_white);
 with (cube1) {
-    t = new Tweeny().Bind(other.id);
+    t = new Tweeny().Bind(other.id).SetSpeed(4);
     t.SetEaseFunc(TweenyEaseBounceOut);
     t.SetLoops();
     t.Variable(self, "x", 100, 1).Relative();
@@ -90,24 +90,24 @@ with (cube3) {
     t.ParallelBegin()
     t.Variable(self, "xScl", 0.5, 1);
     t.Variable(self, "yScl", 1.5, 1);
-    t.Color(self, "col", c_red, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);
+    t.Color(self, "col", c_red, 1).SetEaseCurve(TWEENY_CURVE_SINE, TWEENY_CHANNEL_OUT);
     t.ParallelEnd();
     t.ParallelBegin();
     t.Variable(self, "xScl", 1.5, 1);
     t.Variable(self, "yScl", 0.5, 1);
     t.Variable(self, "x", 100, 1).Relative();
-    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_CURVE_SINE, TWEENY_CHANNEL_OUT);;
     t.ParallelEnd();
     t.ParallelBegin();
     t.Variable(self, "xScl", 0.5, 1);
     t.Variable(self, "yScl", 1.5, 1);
-    t.Color(self, "col", c_blue, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.Color(self, "col", c_blue, 1).SetEaseCurve(TWEENY_CURVE_SINE, TWEENY_CHANNEL_OUT);;
     t.ParallelEnd();
     t.ParallelBegin();
     t.Variable(self, "xScl", 1.5, 1);
     t.Variable(self, "yScl", 0.5, 1);
     t.Variable(self, "x", -100, 1).Relative();
-    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_OUT);;
+    t.Color(self, "col", c_white, 1).SetEaseCurve(TWEENY_CURVE_SINE, TWEENY_CHANNEL_OUT);;
     t.ParallelEnd()
 }
 
