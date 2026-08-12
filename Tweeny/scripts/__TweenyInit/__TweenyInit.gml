@@ -4,7 +4,7 @@ function __TweenyInit() {
     static __data = undefined;
     if (is_undefined(__data)) {
         __data = {
-            timeScale: 1,
+            timescale: 1,
             tweens: [],
             timeSource: undefined,
             defaultEase: TWEENY_DEFAULT_EASE,

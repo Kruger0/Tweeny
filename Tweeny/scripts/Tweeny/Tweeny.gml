@@ -10,7 +10,7 @@ function Tweeny(uid = "") constructor {
     __source = undefined;
     __steps = [];
     __stepIndex = 0;
-    __speedScale = 1.0;
+    __speed = 1.0;
     __speedAbsolute = false;
     __ease = undefined;
     __loopsTotal = 1;
@@ -53,8 +53,8 @@ function Tweeny(uid = "") constructor {
     }
     static __Delta = function() {
     return __speedAbsolute
-        ? (__speedScale / game_get_speed(gamespeed_fps))
-        : (__data.timeScale / game_get_speed(gamespeed_fps)) * __speedScale;
+        ? (__speed / game_get_speed(gamespeed_fps))
+        : (__data.timescale / game_get_speed(gamespeed_fps)) * __speed;
     }
     static __Process = function() {
         if (array_length(__steps) == 0) return;
@@ -291,12 +291,12 @@ function Tweeny(uid = "") constructor {
         __parallel = false;
         return self;
     }
-    /// @desc Sets the playback speed scale of the tween.
-    /// @param {Real} scale The speed multiplier.
-    /// @param {Bool} absolute If true, ignores the global time scale and uses only the provided value.
+    /// @desc Sets the playback speed factor of the tween.
+    /// @param {Real} speed The speed factor.
+    /// @param {Bool} absolute If true, ignores the global time scale and uses only the speed factor.
     /// @return {Struct.Tweeny} The tween element.
-    static SetSpeedScale = function(scale, absolute = false) {
-        __speedScale = scale;
+    static SetSpeed = function(speed, absolute = false) {
+        __speed = speed;
         __speedAbsolute = absolute;
         return self;
     }

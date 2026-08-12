@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"TweenyDraw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"TweenyDraw",
+  "parent":{
+    "name":"Public",
+    "path":"folders/Tweeny/Public.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

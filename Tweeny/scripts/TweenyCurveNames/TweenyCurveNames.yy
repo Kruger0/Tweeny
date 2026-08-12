@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"TweenyGlobal",
+  "%Name":"TweenyCurveNames",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"TweenyGlobal",
+  "name":"TweenyCurveNames",
   "parent":{
-    "name":"Public",
-    "path":"folders/Tweeny/Public.yy",
+    "name":"Curves",
+    "path":"folders/Tweeny/Curves.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
