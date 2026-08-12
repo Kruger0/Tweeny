@@ -4,7 +4,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/commits)
 
 <p align="center"><img src="https://raw.githubusercontent.com/Kruger0/Tweeny/main/LOGO.png" style="display:block; margin:auto; width:300px"></p>
-<h1 align="center">Tweeny 1.0.0</h1>
+<h1 align="center">Tweeny 2.0.0</h1>
 
 <p align="center">Tweening animation engine for GameMaker LTS 2026</p>
 
@@ -24,8 +24,8 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 2. Use the fluent API to configure steps inline:
    ```js
    // Chain multiple steps with easing
-   t.Variable(id, "x", 300, 1).SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT);
-   t.Variable(id, "y", 400, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
+   t.Variable(id, "x", 300, 1).SetEaseCurve(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT);
+   t.Variable(id, "y", 400, 1).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
    ```
 
 3. Run steps in parallel for simultaneous animations:
@@ -57,11 +57,11 @@ Tweeny is a tweening engine made for GameMaker, featuring a fluent chainable API
 12 easing curves are available via macros, each with In, Out, InOut, and OutIn channels:
 ```js
 // Set easing on the whole tween
-t.SetEase(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT)
+t.SetEaseCurve(TWEENY_EASE_BOUNCE, TWEENY_CHANNEL_OUT)
 t.Variable(id, "x", 500, 1)
 
 // Or per-step
-t.Variable(id, "x", 500, 1).SetEase(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_IN)
+t.Variable(id, "x", 500, 1).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_IN)
 ```
 
 ### Color & Angle Interpolation
@@ -85,7 +85,7 @@ Animate arbitrary values through a callback function:
 ```js
 t.Method(function(value) {
     audio_set_gain(snd_music, value, 0);
-}, 0, 1, 2).SetEase(TWEENY_EASE_SINE, TWEENY_CHANNEL_IN);
+}, 0, 1, 2).SetEaseCurve(TWEENY_EASE_SINE, TWEENY_CHANNEL_IN);
 ```
 
 ### Relative Values
@@ -137,8 +137,7 @@ Manage all tweens at once:
 TweenyPauseAll();
 TweenyResumeAll();
 TweenyStopAll();
-TweenyClearAll();
-TweenyDestroyAll();
+TweenyFinishAll();
 
 // Get all active tweens
 var all = TweenyGetAll();
@@ -163,9 +162,11 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 - `Method(func, from, to, duration)` - Animate via custom callback (receives interpolated value)
 - `Interval(duration)` - Wait/pause for a duration
 - `Callback(func, [args])` - Execute a function mid-sequence
+- `Await(func, [args])` - Awaits for a `true` return from the signal function
 
 ### Step Methods (returned by step methods above)
-- `SetEase(animCurve, [channel])` - Set per-step easing curve
+- `SetEaseCurve(animCurve, [channel])` - Set per-step easing curve
+- `SetEaseFunc(easeFunc)` - Set per-step easing function
 - `SetDelay(value)` - Delay before the step executes (in frames)
 - `SetInterpolate(func)` - Custom interpolation function (val1, val2, amount)
 - `Relative()` - Make the target value relative to current
@@ -184,7 +185,7 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 - `Pause()` - Pause the tween
 - `Play()` - Resume the tween
 - `Stop()` - Pause and reset to beginning
-- `Destroy()` - Destroy the tween
+- `Finish()` - Finishes the tween
 - `Execute()` - Start the tween
 
 ### Tween Queries
@@ -205,8 +206,7 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 - `TweenyPauseAll()` - Pause all active tweens
 - `TweenyResumeAll()` - Resume all paused tweens
 - `TweenyStopAll()` - Stop all tweens
-- `TweenyClearAll()` - Destroy all tweens
-- `TweenyDestroyAll()` - Destroy the tween system entirely
+- `TweenyFinishAll()` - Finishes all the tweens
 - `TweenyGetAll()` - Get an array of all active tweens
 
 ### Easing Curve Macros
