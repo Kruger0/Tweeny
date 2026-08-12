@@ -1,5 +1,4 @@
 // feather ignore all
-
 /// @desc Sets the global time scale applied to all tweens.
 /// @param {Real} scale The time scale multiplier.
 function TweenySetTimeScale(scale) {
