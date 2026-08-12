@@ -21,12 +21,12 @@ points = {
     }
 }
 
-tp = new Tweeny().Bind(id).SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).SetLoops(4);
+tp = new Tweeny().Bind(id).SetEaseFunc(TweenyEaseCubicOut).SetLoops(4);
 tp.Variable(points, "value", 100, 3).Relative();
 tp.ParallelBegin();
-tp.Variable(points, "xScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
-tp.Variable(points, "yScl", 1, 1).From(1.2).SetEaseCurve(TWEENY_EASE_ELASTIC, TWEENY_CHANNEL_OUT);
-tp.Color(points, "color", c_white, 1).From(c_yellow).SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT);
+tp.Variable(points, "xScl", 1, 1).From(1.2).SetEaseFunc(TweenyEaseElasticOut);
+tp.Variable(points, "yScl", 1, 1).From(1.2).SetEaseFunc(TweenyEaseElasticOut);
+tp.Color(points, "color", c_white, 1).From(c_yellow);
 tp.ParallelEnd();
 
 //text = {
@@ -125,7 +125,7 @@ coin = {
     }
 }
 
-tc = new Tweeny().SetLoops().SetEaseCurve(TWEENY_EASE_CUBIC, TWEENY_CHANNEL_OUT).Bind(id);
+tc = new Tweeny("DEBUG").SetLoops().SetEaseFunc(TweenyEaseCubicOut).Bind(id);
 tc.ParallelBegin();
 tc.Angle(coin, "rot", 180, 1).Relative()
 tc.Variable(coin, "a", 0, 1)
