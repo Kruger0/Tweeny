@@ -1,5 +1,5 @@
 // feather ignore all
-#macro __TWEENY_VERSION "2.0.0"
+#macro __TWEENY_VERSION "2.0.1"
 
 #macro __TWEENY_C1  1.70158
 #macro __TWEENY_C2  2.5949095
