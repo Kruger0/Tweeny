@@ -3,36 +3,32 @@
 function __TweenyInit() {
     static __data = undefined;
     if (is_undefined(__data)) {
+        // Define
         __data = {
-            timescale: 1,
             tweens: [],
-            timeSource: undefined,
-            defaultEase: TWEENY_DEFAULT_EASE,
-            dbgView: pointer_null,
-            dbgSections: {},
-            dbgMode: false,
+            timescale: 1.0,
+            ease: TWEENY_DEFAULT_EASE,
         }
-        if (GM_build_type == "run" && debug_mode) {
-            global[$ "__Tweeny"] ??= __data;
-        }
-        __TweenyDebug();
-    }
-    with (__data) {
-        if (is_undefined(timeSource) || !time_source_exists(timeSource)) {
-            timeSource = time_source_create(time_source_game, 1, time_source_units_frames, function() {
-                var _data = __TweenyInit();
-                var _tweens = _data.tweens;
-                for (var i = array_length(_tweens)-1; i >= 0; i--) {
-                    var _tween = _tweens[i];
-                    if (_tween.__dead) {
-                        array_delete(_tweens, i, 1);
-                        continue;
-                    }
-                    _tween.__Update();
+        
+        // Update
+        call_later(1, time_source_units_frames, function() {
+            static __data = __TweenyInit();
+            var _tweens = __data.tweens;
+            for (var i = array_length(_tweens)-1; i >= 0; i--) {
+                var _tween = _tweens[i];
+                if (_tween.__dead) {
+                    array_delete(_tweens, i, 1);
+                    continue;
                 }
-            }, [], -1);
-            time_source_start(timeSource);
-        }
+                _tween.__Update();
+            }
+        }, true);
+        
+        // Expose
+        if (TWEENT_EXPOSE_GLOBAL) global.__Tweeny = __data;
+        
+        // Debug
+        __TweenyDebug();
     }
     return __data;
 }
