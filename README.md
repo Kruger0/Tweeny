@@ -4,7 +4,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/Kruger0/Tweeny)](https://github.com/Kruger0/Tweeny/commits)
 
 <p align="center"><img src="https://raw.githubusercontent.com/Kruger0/Tweeny/main/LOGO.png" style="display:block; margin:auto; width:300px"></p>
-<h1 align="center">Tweeny 2.0.0</h1>
+<h1 align="center">Tweeny 2.0.1</h1>
 
 <p align="center">Tweening animation engine for GameMaker LTS 2026</p>
 
