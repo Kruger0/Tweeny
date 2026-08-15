@@ -143,10 +143,10 @@ TweenyFinishAll();
 var all = TweenyGetAll();
 ```
 
-### Deltatime
-Override the deltatime for frame-independent animation:
+### Time Scale
+Sets the global timescale used by every tween:
 ```js
-TweenySetDeltatime(1.0);
+TweenySetTimescale(1.0);
 ```
 
 ## Complete API Reference
