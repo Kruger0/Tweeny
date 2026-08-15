@@ -10,5 +10,8 @@
 // If tweens that dont have any usage at the moment of definition should be clenaed from memory.
 #macro TWEENY_CLEAR_EMPTY   true
 
-// The default ease type used by Tweeny().
+// The default ease type used by tween elements.
 #macro TWEENY_DEFAULT_EASE  TweenyEaseLinearOut
+
+// If the internal system data should be exposed as a 'global.__Tweeny'.
+#macro TWEENT_EXPOSE_GLOBAL false
