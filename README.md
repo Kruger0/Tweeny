@@ -202,11 +202,12 @@ Creates a new tween chain. Optional `source` instance - the tween auto-destructs
 - `OnStepFinished(callback)` - Called when an individual step completes
 
 ### Global Functions
-- `TweenySetDeltatime(dt)` - Override the global deltatime
+- `TweenySetTimescale(dt)` - Override the global timescale
 - `TweenyPauseAll()` - Pause all active tweens
 - `TweenyResumeAll()` - Resume all paused tweens
 - `TweenyStopAll()` - Stop all tweens
 - `TweenyFinishAll()` - Finishes all the tweens
+- `TweenyDestroyAll()` - Destroy all the tweens
 - `TweenyGetAll()` - Get an array of all active tweens
 
 ### Easing Curve Macros
