@@ -93,7 +93,7 @@ function Tweeny(uid = "") constructor {
             step.__remaining -= delta;
             return;
         }
-        var _ease = step.__ease ?? __ease ?? __data.defaultEase;
+        var _ease = step.__ease ?? __ease ?? __data.ease;
         with (step) {
             __from ??= struct_get(__instance ?? {}, __variable) ?? 0;
             __elapsed += delta;
@@ -427,7 +427,7 @@ function Tweeny(uid = "") constructor {
         __paused = false;
         return self;
     }
-    /// @desc Skips all the remaining steps.
+    /// @desc Finishes all the remaining steps and loops.
     /// @return {Struct.Tweeny} The tween element.
     static Finish = function() {
         if (__dead) return self;
